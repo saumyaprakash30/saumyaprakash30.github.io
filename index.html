@@ -1,16 +1,541 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sp</title>
-  </head>
-  <body>
-    <h1><center>PEPL Class</center></h1>
-    <h2>Class notes</h2>
-    <a href="pepl/pepl.cpp" download > Day 1 (2 -jul-19)</a> <br><br>
-    <a href="pepl/pepl_day2.cpp" download > Day 2 (3-jul-19)</a><br><br>
-    <a href="pepl/peplDay3.cpp" download > Day 3 (9-jul -19)</a><br><br>
-    <a href = "pepl/peplDay4.cpp" download>Day 4 (10-jul-19) </a><br><br>
-    <a href="pepl/secondMax.cpp" download >Max and 2nd Max</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  </body>
+  <!--
+    File: index.html
+    Jason Downing
+    Contact: jason@downing.io
+    MIT Licensed - see http://opensource.org/licenses/MIT for details.
+    Anyone may freely use this code. Just don't sue me if it breaks stuff.
+    Created: September 3rd, 2015.
+    Last Updated: November 15th, 2020.
+
+    Jason Downing's personal website. This site has information about him,
+    details about his education, skills, and links to his GitHub and LinkedIn
+    Profiles. This site is hosted on GitHub Pages.
+  -->
+
+  <!-- Custom Title Bar -->
+  <title>Saumya Prakash</title>
+
+  <!-- Bootstrap Core CSS -->
+  <!-- 6/15/2018: Updated to the latest version of Bootstrap (4.1.1) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+  <!-- Custom Fonts -->
+  <script src="https://use.fontawesome.com/4dfd1d7bab.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+  rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+  rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="css/magnific-popup.css" rel="stylesheet">
+
+  <!-- Theme CSS -->
+  <link href="css/creative.min.css" rel="stylesheet">
+
+  <!-- Index CSS -->
+  <link href="css/index.css" rel="stylesheet">
+
+  <!-- Custom favicon -->
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+  
+
+</head>
+
+<body id="page-top">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+
+      <!-- Updated with latest Creative -->
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Saumya Prakash</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" 
+              data-toggle="collapse" data-target="#navbarResponsive" 
+              aria-controls="navbarResponsive" aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#page-top">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#work">Work</a>
+          </li>
+					<li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#funstuff">Fun</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#github">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" target="_blank" href="https://bit.ly/saumyaprakashresume">Resume</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--  Intro Section
+
+        Header image found at the following URL:
+        https://upload.wikimedia.org/wikipedia/commons/f/f5/Free-ride.jpg
+   -->
+  <header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="text-uppercase">
+            <strong>Saumya Prakash</strong>
+          </h1>
+          <hr>
+        </div>
+        <div class="col-lg-8 mx-auto">
+          <p class="text-faded mb-5">IIITDM Kancheepuram</p>
+          <p class="text-italic mb-5">
+            4th year Computer Engineering Student</a>
+          </p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More!</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Education Section -->
+  <section class="bg-primary" id="about">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center mb-4"">
+          <h2 class="section-heading text-white">Education</h2>
+          <hr class="light my-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
+          <i class="fa fa-4x fa-id-card-o text-faded sr-icons"></i>
+          <h3 class="text-white">Degree</h3>
+          <p class="text-faded">Dual Degree (B.Tech + M.tech) <small>from</small> 
+          <a class="text-white-link" href="https://www.iiitdm.ac.in/" class="text-blue">IIIT DM Kancheepuram</a></p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center div-padding-fix mb-4"">
+          <i class="fa fa-4x fa-graduation-cap text-faded sr-icons"></i>
+          <h3 class="text-white">Graduation</h3>
+          <p class="text-faded">Graduated in May 2022 with specialization in System Design</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
+          <i class="fa fa-4x fa-code text-faded sr-icons"></i>
+          <h3 class="text-white">Languages</h3>
+          <p class="text-faded no-margin">C / C++, Python, Java, JavaScript</p>
+          <p class="text-faded no-margin">Verilog, HTML/CSS</p>
+          <p class="text-faded  no-margin">Node-js</p>
+          <p class="text-faded no-margin">SQL,MongoDb </p>
+          
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
+          <i class="fa fa-4x fa-file-code-o text-faded sr-icons"></i>
+          <h3 class="text-white">Skills</h3>
+          <p class="text-faded no-margin">JavaScript backend</p>
+					<p class="text-faded">Android App Development</p>
+          <!-- <p class="text-faded">HTML5 Front end</p> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#work">Wait There's More!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Experience Section. -->
+  <section id="work">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Works</h2>
+          <!-- <i class="fa fa-4x fa-rocket text-primary sr-icons"></i> -->
+          <hr class="primary">
+        </div>
+	      <div class="col-sm-12 text-center mt-4 mb-4"">
+          
+          <!-- <h3 class="mt-4 mb-4">Founder and Developer</h3> -->
+          <!-- <p class="text-muted"><a href="https://www.storyshaala.com" target="_blank"><span class="RtnRed">StoryShaala</span></a></p> -->
+        </div>
+        <!-- <div class="col-lg-3 col-sm-6 text-center">
+          <i class="fa fa-4x fa-fighter-jet text-primary sr-icons"></i>
+          <h3 class="mt-4 mb-4">System Engineer II</h3>
+          <p class="text-muted">April 2018 to August 2019: BAE Systems</p>
+        </div>
+        <div class="col-lg-3 col-sm-6 text-center">
+          <i class="fa fa-4x fa-truck text-primary sr-icons"></i>
+          <h3 class="mt-4 mb-4">Software Developer</h3>
+          <p class="text-muted">July 2017 to April 2018: Creative Logistics Solutions (CLS)</p>
+        </div> -->
+        <div class="col-lg-6 col-sm-6 text-center">
+          <!-- TIL: Bootstrap has awesome spacing classes
+                    https://getbootstrap.com/docs/4.0/utilities/spacing/ -->
+          <!-- <i class="fa fa-4x fa-android text-primary sr-icons"></i> -->
+          <i class="fa fa-4x fa-server text-primary sr-icons ml-4"></i>
+          <h3 class="mt-4 mb-4">Backend Team Head</h3>
+          <p class="text-muted mb-4">Placement's Website Developer, IIITDM Kancheepuram</p> 
+          <!-- <p class="text-muted mb-4">IIITDM Kancheepuram</p>  -->
+          <!-- <p class="text-muted mb-5">Summer 2016: Fidelity Personal Investing (PI) </p> -->
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+          <!-- <i class="fa fa-4x fa-pied-piper text-primary sr-icons"></i> -->
+          <i class="fa fa-4x  text-primary  ml-4"><a href="http://www.storyshaala.com" target="_blank"><img src="img/storyshaala.png" alt="storyshaala" style="width: 1em;"></a></i>
+          <h3 class="mt-4 mb-4">Founder and Developer</h3>
+          <p class="text-faded" class="text-muted"><a href="https://www.storyshaala.com" target="_blank"><span class="RtnRed">StoryShaala</span></a></p>
+        </div>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#funstuff">
+        Boring, show me some fun stuff!</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Some fun stuff, leave the boring code for last. -->
+  <section class="bg-primary" id="funstuff">
+    <div class="container-fluid">
+      <div class="row images-vcenter">
+			
+	      <div class="col-lg-12 pb-3 text-center">
+          <h2 class="section-heading text-white">Fun stuffs</h2>
+          <hr class="hr-black">
+        </div>
+			
+	      <!-- Fun stuff includes links to Mountain Biking, Skiing and Spotify playlists -->
+	      <div class="col-lg-6 col-sm-6 text-center">
+          <a class="href-black" href="https://www.storyshaala.com" target="_blank">
+					<img src="img/storyshaala.png" style="width: 8em;"
+						   class="img-fluid images-border images-size-mtb"
+						   alt="StoryShaala">
+					</a>
+          <h3 class="mt-4 mb-4 text-white">Contibute to <strong>StoryShaala</strong></h3>
+          <p class="text-faded no-margin">A place where a single story is written by many people.</p>
+          <p class="text-faded no-margin">Help you Improv!</p>  
+
+          </p>
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+          <a target="_blank" class="href-black" href="https://housie-online.herokuapp.com/">
+					<img src="img/housie.png" style="width: 8em;"
+						   class="img-fluid images-border images-size-mtb"
+               alt="StoryShaala">
+               
+					</a>
+          <h3 class="mt-4 mb-4 text-white no-margin"><strong>Housie <small>online</small></strong></h3>
+          <p class="text-faded no-margin">Play housie with friends online.</p>
+          <!-- <p class="text-faded">Help you Improv!</p>   -->
+
+          </p>
+        </div>
+			
+        <!-- <div class="col-lg-6 col-sm-6 text-center">
+          <a class="href-black" href="https://downing.io/Mountain-Biking/">
+            <img src="img/storyshaala.png" style="width: 8em;"
+                 class="img-fluid images-border images-size-mtb"
+                 alt="StoryShaala">
+            </a>
+          <h3 class="mt-4 mb-4 text-white"><strong>Housie</strong></h3>
+          <p class="text-faded">Play housie with friends online.</p>
+        </div> -->
+				
+        <!-- <div class="col-lg-4 col-sm-6 text-center">
+          <a class="href-black" href="https://downing.io/Spotify/">
+            <img src="img/portfolio/thumbnails/spotify.png" 
+                 class="img-fluid"
+                 alt="Spotify Playlists!">
+          </a>
+          <h3 class="mt-4 mb-4">Spotify Playlists!</h3>
+        </div> -->
+				
+     </div>
+     <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+        <a class="btn btn-light btn-xl js-scroll-trigger" href="#github">Cool, show me the <&nbsp;&frasl;&nbsp;CODE&nbsp;></a>
+      </div>
+    </div>
+     <!-- <div class="text-center">
+        <a class="btn btn-black btn-xl js-scroll-trigger" href="#github">
+        Cool, show me the <&nbsp;&frasl;&nbsp;CODE&nbsp;></a>
+     </div> -->
+   </div>
+  </section>
+
+  <!-- GitHub Section -->
+  <section class="min-padding-top bg-dark" id="github">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+
+          <!-- Tweaking this part so the title links straight to my GitHub
+          page, without adding the silly extra "CLICK THIS ICON" text that was
+          there before. -->
+          <div class="col-lg-12 pb-3 text-center">
+            <h2 class="section-heading text-white">Projects</h2>
+            <span class="section-heading ">
+              <i class="fa fa-1x fa-github-square" style="color:white"></i>
+              <!-- <a class="text-white-link" href="https://github.com/saumyaprakash30" class="RtnRed">@saumyaprakash30 -->
+              <span class="text-faded" class="text-muted"><a href="https://github.com/saumyaprakash30" target="_blank"><span class="text-white">/saumyaprakash30</span></a></span>
+  
+              </a>
+            </span>
+            <!-- <hr class="hr-black"> -->
+            
+          </div>
+          
+          <hr class="light">
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub links below -->
+    <div class="container-fluid p-0">  <!-- p-0 makes the images go edge to edge (no padding) -->
+      <div class="row no-gutters">
+
+        <!--
+              Redoing the links arrangement. Current thought is it should go:
+              downing.io <-> GUI II <-> Scrabble
+              UML Alerts <-> GUI I  <-> Racket Weather
+			  
+              In the future, add DB1 and DB2 projects, and maybe one other project
+              to complete the 3rd full row. Possibly College repository. This should
+              be possible after graduation. Could also add the DB2 app.
+			  
+              3rd future row would be:
+              DB2 Phase 2 <-> DB2 Android app <-> College
+			  
+              4th row could be:
+              React Tutorial <-> MEAN Project <-> another project
+			  
+              5th row could be:
+              HTML-Apps <-> Teaching <-> iSENSE-API
+			  
+              In the future, maybe add ECG lab work too (Teaching and API repositories)
+        -->
+
+        <!-- First Link: source code for downing.io -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="https://github.com/saumyaprakash30/IpMessenger">
+            <!--  Same photo as the header, but resized.
+                  URL: https://upload.wikimedia.org/wikipedia/commons/f/f5/Free-ride.jpg
+            -->
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/Pra1zTRwqg0/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class=" ">
+                  <strong>Ip Messenger</strong>
+                </div>
+                <div class="project-name text-faded">
+                  <small>A java application that can be use for chatting and transferring files over private network.</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Second Link: source code for GUI II Project (Ski Maps) -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="https://source.unsplash.com/Pra1zTRwqg0/650x350" target="_blank">
+            
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/0nOP5iHVaZ8/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class=" ">
+                  <strong>IndoGuide</strong>
+                </div>
+                <div class="project-name text-faded">
+                  <small>An indoor positioning system for navigation</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Third Link: source code for GUI I last assignment (Scrabble) -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="https://github.com/saumyaprakash30/K-Median-a-hardware-approach">
+            
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/CKpBhTXvLis/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class=" ">
+                  <strong>K-Median-a-hardware-approach</strong>
+                </div>
+                <div class="project-name text-faded">
+                  <small>Designing an AI processor with Hardware Descriptive Lang. mimic K-median</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Fourth Link: source code for UMass Lowell Mobile Dev class (UML Alerts) -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/housie">
+            <!-- Thumbnail from alphr.com
+                 URL: http://cdn1.alphr.com/sites/alphr/files/2016/05/best_android_apps.jpg
+            -->
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/fa9WjZvkQSg/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="">
+                  <strong>Housie</strong>
+                </div>
+                <div class="project-name  text-faded">
+                  <small>Online platform for playing Housie with friends and family</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Fifth Link: source code for entire GUI I class (GUI I) -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Hisaab-Kitaab">
+            <!-- Thumbnail from dtelepathy.com
+                 URL: http://www.dtelepathy.com/blog/wp-content/uploads/2015/06/Technique-for-Faster-Web-Development.jpg -->
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/wcMysLw5ROM/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="   ">
+                  <strong>Hisaab-Kitaab App</strong>
+                </div>
+                <div class="project-name text-faded">
+                  <small>An application for maintaing personal ledger amaong friends in college</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Sixth Link: source code for OPL Project (Racket Weather) -->
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Appartment-Managing-App">
+            <!-- Thumbnail from gannett-cdn.com
+                 URL: http://www.gannett-cdn.com/-mm-/3526533239800dac0c978150377d099025f1e52c/c=52-700-4303-3102&r=x1683&c=3200x1680/local/-/media/USATODAY/None/2014/10/03/1412368123000-Mesostorm-Lightning.jpg -->
+            <img class="img-responsive" width="100%" height="auto" src="https://source.unsplash.com/PhYq704ffdA/650x350" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class=" ">
+                  <strong>Appartment-Managing-App</strong>
+                </div>
+                <div class="project-name text-faded">
+                  <small>An app which can be used by apartment secretary to maintain data.</small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact section -->
+  <section class="min-padding" id="contact">
+    <div class="container">
+    
+      <!-- Contact Jason Row -->
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">
+          
+          <!-- Attempting to avoid spam by removing @ and the dot in my domain -->
+            Contact Sp</h2>
+          <hr class="primary">
+          
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>You can also find my personal email, LinkedIn and GitHub below too.</p>
+        </div>
+      </div>
+      
+      <!-- Email, LinkedIn, and GitHub links -->
+      <div class="row">
+      
+        <div class="col-4 col-sm-4 col-lg-2 offset-lg-3 text-center">
+          <a target="_blank" href="mailto:saumyaprakash30@gmail.com" >
+            <i class="fa fa-envelope fa-4x sr-icons"></i>
+          </a>
+          <p><a href="mailto:saumyaprakash30@gmail.com" class="RtnRed">Email</a></p>
+          
+        </div>
+        
+        <div class="col-4 col-sm-4 col-lg-2 text-center">
+          <a href="https://www.linkedin.com/in/saumyaprakash" target="_blank">
+            <i class="fa fa-linkedin-square fa-4x sr-icons"></i>
+          </a>
+          <p><a href="https://www.linkedin.com/in/saumyaprakash" class="RtnRed">LinkedIn</a></p>
+        </div>
+        
+        <div class="col-4 col-sm-4 col-lg-2 text-center">
+          <a target="_blank" href="https://github.com/saumyaprakash30">
+            <i class="fa fa-github-square fa-4x sr-icons"></i>
+          </a>
+          <p><a href="https://github.com/saumyaprakash30" class="RtnRed">GitHub</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  THIS IS THE FOOTER - displays a copyright notice and
+        that Bootstrap powers this web page.
+        
+        6/16/2018: Added new line for the Source on Github... part, with margin bottom
+                   set to 1 (awesome new bootstrap 4 mb-1 class)-->
+  <div class="container">
+    <p class="text-center text-muted text-small mb-1">
+      
+      Powered by <a href="http://www.getbootstrap.com/" class="text-blue">Bootstrap</a>.
+    </p>
+    <p class="text-center text-muted text-small">
+      Source on <a href="https://github.com/JasonD94/jasond94.github.io" class="text-blue">GitHub</a>.
+      Theme based on the
+      <a href="http://startbootstrap.com/template-overviews/creative/" class="text-blue">Creative Bootstrap Theme</a>
+      by <a href="http://startbootstrap.com/" class="text-blue">Start Bootstrap</a>.
+    </p>
+  </div>
+
+  <!-- 6/15/2018: Updated jQuery, added Popper.js, and updated Bootstrap JS to 4.1.1 -->
+  <!-- Also pulling in the Bootstrap 4 update from Start Bootstrap too
+       https://github.com/BlackrockDigital/startbootstrap-creative  -->
+       
+  <!-- jQuery 3.3.1 -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  
+  <!-- Bootstrap 4.1 JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  
+  <!-- Plugin & Theme JavaScript (With Bootstrap 4 Update) -->
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/scrollreveal.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/creative.min.js"></script>
+  
+</body>
 </html>
