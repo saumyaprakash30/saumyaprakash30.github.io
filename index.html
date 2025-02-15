@@ -13,7 +13,16 @@
   </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <script>
+    function toggleDetails(id) {
+      var details = document.getElementById(id);
+      if (details.style.display === "none") {
+        details.style.display = "block";
+      } else {
+        details.style.display = "none";
+      }
+    }
+  </script>
 
 
   <!-- Custom Title Bar -->
@@ -83,7 +92,7 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" target="_blank" href="SaumyaPrakashResume.pdf" >Resume</a>
+            <a class="nav-link js-scroll-trigger" target="_blank" href="SaumyaPrakashResume.pdf">Resume</a>
           </li>
         </ul>
       </div>
@@ -107,7 +116,10 @@
         <div class="col-lg-8 mx-auto">
           <p class="text-italic mb-1">Software Engineer</p>
           <p class="text-faded mb-5">KLA-Tencor</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More!</a>
+          <p>📧 saumyaprakash30@gmail.com | <a
+              target="_blank" href="https://www.linkedin.com/in/saumyaprakash/">LinkedIn</a> | <a target="_blank"
+              href="https://github.com/saumyaprakash30">GitHub</a></p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger"  href="#about">Find Out More!</a>
         </div>
       </div>
     </div>
@@ -117,46 +129,43 @@
   <section class="bg-primary" id="about">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-8 mx-auto text-center mb-4"">
-          <h2 class=" section-heading text-white">Education</h2>
+        <div class="col-lg-8 mx-auto text-center mb-4">
+          <h2 class="section-heading text-white">Education</h2>
           <hr class="light my-4">
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
-          <i class=" fa fa-4x fa-id-card-o text-faded sr-icons"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
+          <i class="fa fa-4x fa-id-card-o text-faded sr-icons"></i>
           <h3 class="text-white">Degree</h3>
-          <p class="text-white no-margin">Dual Degree (B.Tech + M.tech) </p>
+          <p class="text-white no-margin">Dual Degree (B.Tech + M.Tech)</p>
           <p class="text-faded">Computer Engineering</p>
           <p><a class="text-white-link" href="https://www.iiitdm.ac.in/" class="text-blue">IIIT DM Kancheepuram</a></p>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center div-padding-fix mb-4"">
-          <i class=" fa fa-4x fa-graduation-cap text-faded sr-icons"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center div-padding-fix mb-4">
+          <i class="fa fa-4x fa-graduation-cap text-faded sr-icons"></i>
           <h3 class="text-white">Graduation</h3>
-          <p class="text-faded">Graduating in May 2022 with specialization in System Design</p>
+          <p class="text-faded">Graduated in May 2022 with a specialization in System Design (CGPA: 8.5)</p>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
-          <i class=" fa fa-4x fa-code text-faded sr-icons"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
+          <i class="fa fa-4x fa-code text-faded sr-icons"></i>
           <h3 class="text-white">Languages</h3>
-          <p class="text-faded no-margin">C / C++, C# Python, Java, JavaScript</p>
-          <p class="text-faded no-margin">Verilog, C++/cli</p>
-          <p class="text-faded  no-margin">Node-js</p>
-          <p class="text-faded no-margin">SQL,MongoDb </p>
-
+          <p class="text-faded no-margin">C#, C++, C++/CLI, Python, Java, JavaScript</p>
+          <p class="text-faded no-margin">SQL, MongoDB</p>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4"">
-          <i class=" fa fa-4x fa-file-code-o text-faded sr-icons"></i>
+        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
+          <i class="fa fa-4x fa-file-code-o text-faded sr-icons"></i>
           <h3 class="text-white">Skills</h3>
-          <p class="text-faded no-margin">MEAN Stack</p>
-          <p class="text-faded no-margin">Android App Development</p>
-          <p class="text-faded no-margin">Image Processing</p>
-          <p class="text-faded no-margin">.NET Framework</p>
-          <!-- <p class="text-faded">HTML5 Front end</p> -->
+          <p class="text-faded no-margin">.NET Core, .NET Framework, ASP.NET</p>
+          <p class="text-faded no-margin">Angular, gRPC, REST APIs</p>
+          <p class="text-faded no-margin">Docker, NUnit, Azure DevOps</p>
+          <p class="text-faded no-margin">Git, Linux, Windows</p>
         </div>
       </div>
+
 
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 text-center">
@@ -169,58 +178,76 @@
   <!-- Work Experience Section. -->
   <section id="work">
     <div class="container-fluid">
-
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h2 class="section-heading">Works</h2>
-          <!-- <i class="fa fa-4x fa-rocket text-primary sr-icons"></i> -->
+          <h2 class="section-heading">Work Experience</h2>
           <hr class="primary">
         </div>
-        <div class="col-lg-12 col-sm-6 text-center">
+      </div>
+      <div class="row m-1 border">
+        <div class="col-lg-4 col-sm-6 text-center  d-flex flex-column justify-content-center">
           <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
-          <h3 class="mt-4 mb-4">Software Engineer</h3>
-          <p class="text-muted"><span class="RtnRed">KLA-Tencor</span></p>
-        </div>
-        <div class="col-lg-6 col-sm-6 text-center">
-          <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
-          <h3 class="mt-4 mb-4">Software Engineer NCG Intern</h3>
-          <p class="text-muted">Dec 2021 to June 2022 : <span class="RtnRed">KLA-Tencor</span></p>
+          <h3 class="mt-4 mb-4">Software Engineer 2</h3>
+          <p class="text-muted"><span class="RtnRed">KLA</span></p>
+          <p class="text-muted">July 2022 - Present</p>
+          <!-- <button class="btn btn-light btn-xl js-scroll-trigger" onclick="toggleDetails('exp1')">More Info</button> -->
+
         </div>
 
-        <div class="col-lg-6 col-sm-6 text-center">
+        <div id="exp1" class="details  d-flex flex-column justify-content-center m-1">
+          <h5>Software Development</h5>
+          <ul>
+            <li>Developed and maintained multi-threaded software using .NET Core, .NET Framework, C#, and C++.</li>
+            <li>Designed and implemented web services with REST APIs, Swagger, and WebSocket.</li>
+            <li>Led feature development using Test-Driven Development (TDD).</li>
+          </ul>
+          <h5>RUN Infra Changes</h5>
+          <ul>
+            <li>Transitioned a legacy DAG to a C#-based workflow system.</li>
+            <li>Ported WPF UI to support the new infrastructure.</li>
+          </ul>
+          <h5>Transforming the Code</h5>
+          <ul>
+            <li>Refactored a major component using composite, singleton, and template design patterns.</li>
+            <li>Reduced code complexity, improving maintainability and scalability.</li>
+          </ul>
+          <h5>Build Optimization</h5>
+          <ul>
+            <li>Achieved ~98% optimization in build time, reducing it from ~60 minutes to ~45 seconds.</li>
+            <li>Automated patch creation, saving ~108 hours/year.</li>
+          </ul>
+
+        </div>
+      </div>
+
+
+      <div class="row border m-1 ">
+        <div class="col-lg-4 col-sm-6 text-center   d-flex flex-column justify-content-center">
           <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
           <h3 class="mt-4 mb-4">Software Engineer Intern</h3>
-          <p class="text-muted">May 2021 to Oct 2021 : <span class="RtnRed">KLA-Tencor</span></p>
-        </div>
+          <p class="text-muted">Dec 2021 - June 2022 : <span class="RtnRed">KLA</span></p>
+          <!-- <button class="btn btn-light btn-xl js-scroll-trigger" onclick="toggleDetails('exp2')">More Info</button> -->
 
-        <div class="col-lg-6 col-sm-6 text-center">
-          <!-- TIL: Bootstrap has awesome spacing classes
-                    https://getbootstrap.com/docs/4.0/utilities/spacing/ -->
-          <!-- <i class="fa fa-4x fa-android text-primary sr-icons"></i> -->
-          <i class="fa fa-4x fa-server text-primary sr-icons ml-4"></i>
-          <h3 class="mt-4 mb-4">Backend Team Head</h3>
-          <p class="text-muted mb-4">Placement's Website Developer</p>
-          <p class="text-muted">Aug 2020 to Oct 2020: <span class="RtnRed">IIITDM Kancheepuram</span></p>
-          <!-- <p class="text-muted mb-4">IIITDM Kancheepuram</p>  -->
-          <!-- <p class="text-muted mb-5">Summer 2016: Fidelity Personal Investing (PI) </p> -->
         </div>
-        <div class="col-lg-6 col-sm-6 text-center">
-          <!-- <i class="fa fa-4x fa-pied-piper text-primary sr-icons"></i> -->
-          <i class="fa fa-4x  text-primary ml-4"><a href="http://www.storyshaala.com" target="_blank"><img
-                src="img/storyshaala.png" alt="StoryShaala" style="width: 1em;"></a></i>
-          <h3 class="mt-4 mb-4">Founder and Developer</h3>
-          <!-- <p class="text-faded" class="text-muted "><a href="https://www.storyshaala.com" target="_blank"><span class="RtnRed">StoryShaala</span></a></p> -->
-          <p class="text-muted"> <span class="RtnRed">StoryShaala</span></p>
+        <div id="exp2" class="details m-1 d-flex flex-column justify-content-center">
+          <ul>
+            <li>Ported legacy unmanaged code to managed C# to improve system stability.</li>
+            <li>Reduced memory management issues by transitioning from unmanaged to managed code.</li>            
+          </ul>
+          
         </div>
-        <div class="col-lg-1"></div>
       </div>
-      <div class="text-center">
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#funstuff">
-          Boring, show me some fun stuff!</a>
-      </div>
+
+      
+
+    </div>
+    <div class="text-center">
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="#funstuff">
+        Boring, show me some fun stuff!</a>
+    </div>
+
     </div>
   </section>
-
   <!-- Some fun stuff, leave the boring code for last. -->
   <section class="bg-primary" id="funstuff">
     <div class="container-fluid">
@@ -262,10 +289,10 @@
 
       <div class="row images-vcenter">
 
-      
 
-        
-        
+
+
+
         <div class="col-lg-12 col-sm-6 text-center">
           <a class="href-black" href="https://saumyaprakash.myportfolio.com" target="_blank">
             <img src="img/photography.png" style="width: 8em;" class="img-fluid images-border images-size-mtb"
@@ -276,10 +303,10 @@
 
           </p>
         </div>
-        
-        
 
-        
+
+
+
 
       </div>
 
@@ -331,12 +358,11 @@
     <div class="container-fluid p-0=">
       <!-- p-0 makes the images go edge to edge (no padding) -->
       <div class="row ">
-          <!-- First Link: -->
+        <!-- First Link: -->
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" href="https://github.com/saumyaprakash30/IpMessenger">
 
-            <img class="img-responsive" width="100%" height="auto" 
-              alt="">
+            <img class="img-responsive" width="100%" height="auto" alt="">
             <div class=" ">
               <div class="-content">
                 <div class=" ">
@@ -355,8 +381,7 @@
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" href="https://source.unsplash.com/Pra1zTRwqg0/650x350" target="_blank">
 
-            <img class="img-responsive" width="100%" height="auto" 
-              alt="">
+            <img class="img-responsive" width="100%" height="auto" alt="">
             <div class="">
               <div class="-content">
                 <div class=" ">
@@ -374,8 +399,7 @@
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" href="https://github.com/saumyaprakash30/K-Median-a-hardware-approach">
 
-            <img class="img-responsive" width="100%" height="auto" 
-              alt="">
+            <img class="img-responsive" width="100%" height="auto" alt="">
             <div class="">
               <div class="-content">
                 <div class=" ">
@@ -393,8 +417,7 @@
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/housie">
 
-            <img class="img-responsive" width="100%" height="auto" 
-              alt="">
+            <img class="img-responsive" width="100%" height="auto" alt="">
             <div class="">
               <div class="-content">
                 <div class="">
@@ -412,8 +435,7 @@
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Hisaab-Kitaab">
 
-            <img class="img-responsive" width="100%" height="auto" 
-              alt="">
+            <img class="img-responsive" width="100%" height="auto" alt="">
             <div class="">
               <div class="-content">
                 <div class="   ">
@@ -431,8 +453,8 @@
         <div class="col-lg-4 col-sm-6 border border-light">
           <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Appartment-Managing-App">
 
-            <img class="img-responsive" width="100%" height="auto" src="https://unsplash.com/photos/a-tree-in-the-middle-of-a-field-under-a-night-sky-Ms9OQ3xS3xI"
-              alt="">
+            <img class="img-responsive" width="100%" height="auto"
+              src="https://unsplash.com/photos/a-tree-in-the-middle-of-a-field-under-a-night-sky-Ms9OQ3xS3xI" alt="">
             <div class="">
               <div class="-content">
                 <div class=" ">
@@ -445,7 +467,7 @@
             </div>
           </a>
         </div>
-        
+
       </div>
     </div>
   </section>
