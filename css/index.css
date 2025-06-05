@@ -195,3 +195,36 @@ a.text-white-link:active {
 	color: #E61231 !important;
 	font-weight: bold;
 }
+
+.feed-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5em;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feed-card {
+  background-color: #fff;
+  padding: 1em 1.2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feed-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.feed-card a {
+  font-size: 1.1em;
+  text-decoration: none;
+  color: #0077cc;
+}
+
+.feed-card small {
+  display: block;
+  margin-top: 0.5em;
+  color: #666;
+}
