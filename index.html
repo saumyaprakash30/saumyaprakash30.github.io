@@ -13,715 +13,786 @@
   </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script>
-    function toggleDetails(id) {
-      var details = document.getElementById(id);
-      if (details.style.display === "none") {
-        details.style.display = "block";
-      } else {
-        details.style.display = "none";
-      }
-    }
-  </script>
-
 
   <!-- Custom Title Bar -->
-  <title>Saumya Prakash</title>
+  <title>Saumya Prakash - Software Engineer</title>
 
-  <!-- Bootstrap Core CSS -->
-  <!-- 6/15/2018: Updated to the latest version of Bootstrap (4.1.1) -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
-  <!-- Custom Fonts -->
-  <script src="https://use.fontawesome.com/4dfd1d7bab.js"></script>
-  <link
-    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-    rel='stylesheet' type='text/css'>
-  <link
-    href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-    rel='stylesheet' type='text/css'>
-
-  <!-- Plugin CSS -->
-  <link href="css/magnific-popup.css" rel="stylesheet">
-
-  <!-- Theme CSS -->
-  <link href="css/creative.min.css" rel="stylesheet">
-
-  <!-- Index CSS -->
-  <link href="css/index.css" rel="stylesheet">
-
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <!-- Custom favicon -->
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
+  <!-- Modern CSS -->
+  <style>
+    :root {
+      --primary-color: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary-color: #06b6d4;
+      --accent-color: #f59e0b;
+      --dark-bg: #0f172a;
+      --darker-bg: #020617;
+      --light-bg: #f8fafc;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-light: #94a3b8;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Glassmorphism Effect */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-weight: 500;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color) !important;
+      transform: translateY(-2px);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, var(--primary-color) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, var(--secondary-color) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, var(--accent-color) 0%, transparent 50%);
+      opacity: 0.1;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--text-light);
+      animation: slideInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: rgba(255, 255, 255, 0.8);
+      animation: slideInUp 1s ease-out 0.4s both;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-primary-custom {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+      color: white;
+    }
+
+    .btn-primary-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-primary-custom:hover::before {
+      left: 100%;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 2px;
+    }
+
+    /* Education Section */
+    .education-section {
+      background: var(--light-bg);
+    }
+
+    .education-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .education-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+    }
+
+    .education-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Work Experience */
+    .work-section {
+      background: var(--dark-bg);
+      color: white;
+    }
+
+    .work-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .company-logo {
+      max-width: 150px;
+      max-height: 60px;
+      filter: brightness(0) invert(1);
+      margin: 1rem 0;
+      object-fit: contain;
+      background: transparent;
+    }
+
+    .company-logo:hover {
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+    }
+
+    .contact-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+
+    .contact-link:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-item {
+      text-align: center;
+      padding: 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--darker-bg);
+      color: var(--text-light);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+    }
+
+    /* Scroll animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
-<body id="page-top">
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg" id="mainNav">
     <div class="container">
-
-      <!-- Updated with latest Creative -->
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Saumya Prakash</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <a class="navbar-brand" href="#home">Saumya Prakash</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
       </button>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#page-top">Home</a>
+            <a class="nav-link" href="#home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Education</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#work">Work</a>
+            <a class="nav-link" href="#experience">Experience</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#funstuff">Fun</a>
+            <a class="nav-link" href="#skills">Skills</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#github">Projects</a>
+            <a class="nav-link" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link" href="https://flatconnect.in" target="_blank">FlatConnect</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="flatConnect.html">FlatConnect</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" target="_blank" href="SaumyaPrakashResume.pdf">Resume</a>
+            <a class="nav-link" href="SaumyaPrakashResume.pdf" target="_blank">Resume</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!--  Intro Section
-
-        Header image found at the following URL:
-        https://upload.wikimedia.org/wikipedia/commons/f/f5/Free-ride.jpg
-   -->
-  <header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
-      <div class="row">
-        <div class="col-lg-10 mx-auto">
-          <h1 class="text-uppercase">
-            <strong>Saumya Prakash</strong>
-          </h1>
-          <hr>
-        </div>
-        <div class="col-lg-8 mx-auto">
-          <h3 class=" mb-1">Software Engineer</h3>
-          <div>
-            <img class="img-fluid  mb-5"
-              src="https://www.appliedmaterials.com/content/dam/applied-materials/Applied-Materials-Logo-No-Tag-Line.png"
-              alt="Applied Materials Logo" style="width: 10em; height: auto; margin-top: 1em; margin-bottom: 1em;">
-          </div>
-          <p>📧 saumyaprakash30@gmail.com | <a target="_blank"
-              href="https://www.linkedin.com/in/saumyaprakash/">LinkedIn</a> | <a target="_blank"
-              href="https://github.com/saumyaprakash30">GitHub</a></p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More!</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Education Section -->
-  <section class="bg-primary" id="about">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-8 mx-auto text-center mb-4">
-          <h2 class="section-heading text-white">Education</h2>
-          <hr class="light my-4">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
-          <i class="fa fa-4x fa-id-card-o text-faded sr-icons"></i>
-          <h3 class="text-white">Degree</h3>
-          <p class="text-white no-margin">Dual Degree (B.Tech + M.Tech)</p>
-          <p class="text-faded">Computer Engineering</p>
-          <p><a class="text-white-link" href="https://www.iiitdm.ac.in/" class="text-blue">IIIT DM Kancheepuram</a></p>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center div-padding-fix mb-4">
-          <i class="fa fa-4x fa-graduation-cap text-faded sr-icons"></i>
-          <h3 class="text-white">Graduation</h3>
-          <p class="text-faded">Graduated in May 2022 with a specialization in System Design (CGPA: 8.5)</p>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
-          <i class="fa fa-4x fa-code text-faded sr-icons"></i>
-          <h3 class="text-white">Languages</h3>
-          <p class="text-faded no-margin">C#, C++, C++/CLI, Python, Java, JavaScript</p>
-          <p class="text-faded no-margin">SQL, MongoDB</p>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-6 text-center mb-4">
-          <i class="fa fa-4x fa-file-code-o text-faded sr-icons"></i>
-          <h3 class="text-white">Skills</h3>
-          <p class="text-faded no-margin">.NET Core, .NET Framework, ASP.NET</p>
-          <p class="text-faded no-margin">Angular, gRPC, REST APIs</p>
-          <p class="text-faded no-margin">Docker, NUnit, Azure DevOps</p>
-          <p class="text-faded no-margin">Git, Linux, Windows</p>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#work">Wait There's More!</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Work Experience Section. -->
-  <section id="work">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading">Work Experience</h2>
-          <hr class="primary">
-        </div>
-      </div>
-      <div class="row m-1 border">
-        <div class="col-lg-4 col-sm-6 text-center  d-flex flex-column justify-content-center">
-          <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
-          <h3 class="mt-4 mb-4">Tech Lead IC</h3>
-          <!-- <p class="text-muted"><span class="RtnRed">KLA</span></p> -->
-          <div>
-            <img class="img-fluid  mb-5"
-              src="https://www.appliedmaterials.com/content/dam/applied-materials/Applied-Materials-Logo-No-Tag-Line.png"
-              alt="Applied Materials Logo" style="width: 10em; height: auto; margin-top: 1em; margin-bottom: 1em;">
-          </div>
-          <p class="text-muted">June 2025 - Present</p>
-          <!-- <button class="btn btn-light btn-xl js-scroll-trigger" onclick="toggleDetails('exp1')">More Info</button> -->
-
-        </div>
-
-        <div id="exp1" class="details  d-flex flex-column justify-content-center m-1">
-          Will be updated soon!!
-
-        </div>
-      </div>
-      <div class="row m-1 border">
-        <div class="col-lg-4 col-sm-6 text-center  d-flex flex-column justify-content-center">
-          <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
-          <h3 class="mt-4 mb-4">Software Engineer 2</h3>
-          <!-- <p class="text-muted"><span class="RtnRed">KLA</span></p> -->
-          <div>
-            <svg style="width: 10em; height: auto; margin-top: 1em; margin-bottom: 1em;" class="logo"
-              viewBox="0 0 167 57" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <g class="no-instruments" fill="#41007F">
-                  <path
-                    d="M51.984 53.671h-1.187l-3.17-4.216-.927.813v3.403H45.7V44.98H46.7v4.31l3.949-4.31h1.205l-3.504 3.699z">
-                  </path>
-                  <path
-                    d="M55.97 53.782a2.97 2.97 0 01-2.28-.87 3.416 3.416 0 01-.835-2.44 3.692 3.692 0 01.779-2.497 2.524 2.524 0 012.076-.924 2.487 2.487 0 011.947.795c.503.591.761 1.352.723 2.126v.63h-4.542a2.677 2.677 0 00.574 1.738 2.06 2.06 0 001.558.591 5.183 5.183 0 002.076-.443v.887c-.314.144-.644.25-.983.315-.36.07-.726.101-1.093.092zm-.278-5.918a1.578 1.578 0 00-1.261.518 2.309 2.309 0 00-.556 1.406h3.41a2.178 2.178 0 00-.407-1.424 1.448 1.448 0 00-1.186-.5zM63.274 53.782a2.97 2.97 0 01-2.28-.87 3.416 3.416 0 01-.835-2.44 3.692 3.692 0 01.78-2.497 2.524 2.524 0 012.075-.924 2.487 2.487 0 011.854.795c.537.577.83 1.34.816 2.126v.63h-4.43a2.677 2.677 0 00.574 1.738 2.06 2.06 0 001.557.591 5.183 5.183 0 002.077-.443v.887c-.314.144-.644.25-.983.315-.397.078-.801.11-1.205.092zm-.167-5.918a1.578 1.578 0 00-1.26.518 2.309 2.309 0 00-.557 1.406h3.411a2.178 2.178 0 00-.407-1.424 1.448 1.448 0 00-1.187-.5zM70.8 53.782c-.4.005-.797-.07-1.167-.222a2.205 2.205 0 01-.871-.721v3.754H67.76v-9.432h.909v.962c.219-.329.519-.596.871-.777.37-.153.768-.228 1.168-.221.768-.043 1.51.28 2.002.869.508.73.756 1.609.705 2.496a3.84 3.84 0 01-.723 2.478 2.376 2.376 0 01-1.891.814zm-.148-5.9a1.745 1.745 0 00-1.446.556 2.787 2.787 0 00-.444 1.756v.222a3.322 3.322 0 00.444 1.96c.38.411.925.629 1.484.592a1.54 1.54 0 001.316-.684c.34-.556.507-1.199.482-1.85a3.12 3.12 0 00-.482-1.849 1.577 1.577 0 00-1.354-.702z"
-                    fill-rule="nonzero"></path>
-                  <path d="M79.607 53.671V44.98h1v7.786h3.857v.906z"></path>
-                  <path
-                    d="M91.639 50.416a3.563 3.563 0 01-.723 2.478 2.784 2.784 0 01-2.207.888 2.879 2.879 0 01-1.557-.407 2.795 2.795 0 01-1.057-1.165 4.19 4.19 0 01-.37-1.85 3.693 3.693 0 01.797-2.477 2.859 2.859 0 012.225-.888 2.747 2.747 0 012.169.906c.553.716.811 1.616.723 2.515zm-4.969 0c-.039.655.137 1.304.5 1.85.347.452.896.702 1.465.665a1.745 1.745 0 001.465-.647 2.99 2.99 0 00.519-1.85 2.898 2.898 0 00-.52-1.849 1.707 1.707 0 00-1.482-.647 1.745 1.745 0 00-1.465.629 3.175 3.175 0 00-.482 1.85zM99.277 50.416a3.563 3.563 0 01-.798 2.478 2.859 2.859 0 01-2.224.888 2.972 2.972 0 01-1.557-.407 2.758 2.758 0 01-1.039-1.165 3.93 3.93 0 01-.37-1.85 3.527 3.527 0 01.797-2.477 2.821 2.821 0 012.206-.888c.829-.044 1.633.29 2.187.906.58.705.866 1.606.798 2.515zm-4.969 0c-.039.655.137 1.304.5 1.85.347.452.896.702 1.465.665a1.856 1.856 0 001.483-.647 3.12 3.12 0 00.501-1.85 3.009 3.009 0 00-.5-1.849 2.023 2.023 0 00-2.948 0 3.046 3.046 0 00-.5 1.831z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M102.447 50.342l.778-.961 2.114-2.22h1.168l-2.614 2.811 2.818 3.7h-1.187l-2.299-3.07-.76.628v2.441h-.982v-9.247h.964V50.342z">
-                  </path>
-                  <path
-                    d="M108.25 45.405a.628.628 0 01.166-.5.594.594 0 01.427-.166.538.538 0 01.408.166c.12.138.18.318.166.5a.61.61 0 01-.166.48.538.538 0 01-.408.167.594.594 0 01-.427-.167.61.61 0 01-.166-.48zm1.075 8.266h-.983v-6.51h.983v6.51z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M116.351 53.671v-4.216A1.698 1.698 0 00116 48.27a1.523 1.523 0 00-1.15-.388 1.856 1.856 0 00-1.501.555 2.806 2.806 0 00-.464 1.849v3.384h-1v-6.51h.815l.148.888c.206-.324.502-.582.853-.74.382-.18.801-.27 1.224-.258a2.488 2.488 0 011.853.554c.459.502.681 1.174.612 1.85v4.216h-1.038z">
-                  </path>
-                  <path
-                    d="M125.231 47.161v.63l-1.205.129c.281.38.43.84.427 1.313a1.847 1.847 0 01-.65 1.516 2.6 2.6 0 01-1.853.574h-.538c-.426.221-.649.499-.649.832a.407.407 0 00.223.388c.238.106.5.15.76.13h1.15a2.563 2.563 0 011.63.443c.392.313.607.796.575 1.295a1.848 1.848 0 01-.87 1.646 4.57 4.57 0 01-2.54.573 3.455 3.455 0 01-1.966-.48 1.515 1.515 0 01-.704-1.332 1.496 1.496 0 01.445-1.147c.29-.3.665-.506 1.075-.592a.982.982 0 01-.427-.351.886.886 0 01-.166-.536c-.01-.225.055-.446.185-.63.166-.212.374-.389.612-.517a1.853 1.853 0 01-.834-.703 2.178 2.178 0 01-.316-1.146 2.106 2.106 0 01.65-1.646 2.618 2.618 0 011.853-.573c.313-.003.624.035.927.11l2.206.074zm-5.19 7.601a.85.85 0 00.537.759c.393.207.835.303 1.28.277a3.4 3.4 0 001.853-.37 1.11 1.11 0 00.612-.999.794.794 0 00-.334-.74 2.675 2.675 0 00-1.242-.203h-1.168a1.597 1.597 0 00-1.057.315 1.183 1.183 0 00-.482.961zm.537-5.548c-.024.385.117.762.39 1.036a1.56 1.56 0 001.075.351 1.256 1.256 0 001.446-1.406 1.311 1.311 0 00-.368-1.098 1.318 1.318 0 00-1.097-.38 1.411 1.411 0 00-1.075.388 1.44 1.44 0 00-.371 1.146v-.037zM136.429 53.671l-1.02-2.755h-3.56l-1.056 2.755h-.946l3.449-8.71h.852l3.338 8.71h-1.057zm-1.39-3.699l-1.02-2.7c-.13-.332-.26-.758-.408-1.257-.1.426-.223.846-.37 1.257l-1.02 2.7h2.817z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M143.455 53.671v-4.216a1.717 1.717 0 00-.37-1.184 1.467 1.467 0 00-1.132-.388 1.856 1.856 0 00-1.501.555 2.824 2.824 0 00-.482 1.849v3.384h-.983v-9.247h.983v2.811c.02.277.02.556 0 .833.203-.32.492-.576.834-.74a2.6 2.6 0 011.224-.277 2.507 2.507 0 011.853.573c.459.5.675 1.176.594 1.85v4.197h-1.02z">
-                  </path>
-                  <path
-                    d="M149.703 53.782a2.989 2.989 0 01-2.3-.87 3.416 3.416 0 01-.87-2.44 3.692 3.692 0 01.778-2.497 2.561 2.561 0 012.095-.924 2.413 2.413 0 011.854.795c.544.574.843 1.337.834 2.126v.63h-4.505a2.677 2.677 0 00.593 1.738c.404.408.965.624 1.54.591a5.258 5.258 0 002.094-.443v.887a4.906 4.906 0 01-2.113.407zm-.278-5.918a1.615 1.615 0 00-1.261.518 2.42 2.42 0 00-.538 1.406h3.411a2.178 2.178 0 00-.426-1.424 1.448 1.448 0 00-1.186-.5zM158.323 53.671l-.204-.924a2.76 2.76 0 01-.964.832c-.383.151-.793.22-1.205.203a2.228 2.228 0 01-1.538-.5 1.847 1.847 0 01-.538-1.405c0-1.313 1.057-2.015 3.152-2.07h1.112v-.408a1.643 1.643 0 00-.334-1.128 1.374 1.374 0 00-1.057-.37 4.29 4.29 0 00-1.853.5l-.316-.759c.34-.165.694-.302 1.057-.407a5.017 5.017 0 011.15-.147 2.581 2.581 0 011.742.517c.409.454.61 1.057.556 1.665v4.401h-.76zm-2.243-.703c.53.03 1.048-.15 1.446-.499.37-.371.566-.882.538-1.405v-.592h-1.001a3.604 3.604 0 00-1.687.37 1.09 1.09 0 00-.52.998c-.02.305.096.602.316.814.255.21.577.322.908.314zM165.998 52.802a2.338 2.338 0 01-2.057.98 2.376 2.376 0 01-1.984-.87 3.692 3.692 0 01-.723-2.477c-.055-.89.2-1.773.723-2.497a2.413 2.413 0 011.984-.887c.8-.047 1.567.316 2.039.961v-3.588h.945v9.247h-.797l-.13-.869zm-1.983.166a1.856 1.856 0 001.464-.554 2.824 2.824 0 00.464-1.85v-.203a3.34 3.34 0 00-.464-1.979 1.856 1.856 0 00-1.483-.592 1.521 1.521 0 00-1.335.685 3.415 3.415 0 00-.445 1.849 3.193 3.193 0 00.445 1.85c.278.486.793.788 1.354.794z"
-                    fill-rule="nonzero"></path>
-                </g>
-                <g fill="#41007F">
-                  <path
-                    d="M84.297 37.027L99.851 3.74a.89.89 0 01.835-.518c.358-.015.69.19.834.518l15.573 33.288h3.485L104.393 2.39a4.08 4.08 0 00-3.707-2.374 4.08 4.08 0 00-3.708 2.374L80.793 37.027h3.504zM49.778 33.883a.947.947 0 01-.946-.961V.04H45.68v32.882a4.082 4.082 0 001.194 2.901 4.102 4.102 0 002.904 1.204h25.009v-3.144h-25.01zM33.445 37.027h4.078L21.821 16.98 35.095.04H31.09L4.765 33.643a.798.798 0 01-.964.277.832.832 0 01-.575-.814V.04H.074v33.066a3.94 3.94 0 002.707 3.792c.43.145.881.22 1.335.222a3.952 3.952 0 003.133-1.535l12.57-16.053 13.626 17.495z">
-                  </path>
-                </g>
-                <path class="logo-plus" fill="#00A7E1" d="M129.847.04h37.078v36.987h-37.078z"></path>
-                <path fill="#FFF"
-                  d="M164.145 16.795h-14.016V2.815h-3.485v13.98h-14.016v3.477h14.016v13.981h3.485V20.272h14.016z">
-                </path>
-              </g>
-
-            </svg>
-          </div>
-          <p class="text-muted">July 2022 - May 2025</p>
-          <!-- <button class="btn btn-light btn-xl js-scroll-trigger" onclick="toggleDetails('exp1')">More Info</button> -->
-
-        </div>
-
-        <div id="exp1" class="details  d-flex flex-column justify-content-center m-1">
-          <h5>Software Development</h5>
-          <ul>
-            <li>Developed and maintained multi-threaded software using .NET Core, .NET Framework, C#, and C++.</li>
-            <li>Designed and implemented web services with REST APIs, Swagger, and WebSocket.</li>
-            <li>Led feature development using Test-Driven Development (TDD).</li>
-          </ul>
-          <h5>RUN Infra Changes</h5>
-          <ul>
-            <li>Transitioned a legacy DAG to a C#-based workflow system.</li>
-            <li>Ported WPF UI to support the new infrastructure.</li>
-          </ul>
-          <h5>Transforming the Code</h5>
-          <ul>
-            <li>Refactored a major component using composite, singleton, and template design patterns.</li>
-            <li>Reduced code complexity, improving maintainability and scalability.</li>
-          </ul>
-          <h5>Build Optimization</h5>
-          <ul>
-            <li>Achieved ~98% optimization in build time, reducing it from ~60 minutes to ~45 seconds.</li>
-            <li>Automated patch creation, saving ~108 hours/year.</li>
-          </ul>
-
-        </div>
-      </div>
-
-
-      <div class="row border m-1 ">
-        <div class="col-lg-4 col-sm-6 text-center   d-flex flex-column justify-content-center">
-          <i class="fa fa-4x fa-rocket text-primary sr-icons"></i>
-          <h3 class="mt-4 mb-4">Software Engineer Intern</h3>
-
-          <!-- <span class="RtnRed">KLA</span> -->
-          <div>
-            <svg style="width: 10em; height: auto; margin-top: 1em; margin-bottom: 1em;" class="logo"
-              viewBox="0 0 167 57" xmlns="http://www.w3.org/2000/svg">
-              <g fill="none" fill-rule="evenodd">
-                <g class="no-instruments" fill="#41007F">
-                  <path
-                    d="M51.984 53.671h-1.187l-3.17-4.216-.927.813v3.403H45.7V44.98H46.7v4.31l3.949-4.31h1.205l-3.504 3.699z">
-                  </path>
-                  <path
-                    d="M55.97 53.782a2.97 2.97 0 01-2.28-.87 3.416 3.416 0 01-.835-2.44 3.692 3.692 0 01.779-2.497 2.524 2.524 0 012.076-.924 2.487 2.487 0 011.947.795c.503.591.761 1.352.723 2.126v.63h-4.542a2.677 2.677 0 00.574 1.738 2.06 2.06 0 001.558.591 5.183 5.183 0 002.076-.443v.887c-.314.144-.644.25-.983.315-.36.07-.726.101-1.093.092zm-.278-5.918a1.578 1.578 0 00-1.261.518 2.309 2.309 0 00-.556 1.406h3.41a2.178 2.178 0 00-.407-1.424 1.448 1.448 0 00-1.186-.5zM63.274 53.782a2.97 2.97 0 01-2.28-.87 3.416 3.416 0 01-.835-2.44 3.692 3.692 0 01.78-2.497 2.524 2.524 0 012.075-.924 2.487 2.487 0 011.854.795c.537.577.83 1.34.816 2.126v.63h-4.43a2.677 2.677 0 00.574 1.738 2.06 2.06 0 001.557.591 5.183 5.183 0 002.077-.443v.887c-.314.144-.644.25-.983.315-.397.078-.801.11-1.205.092zm-.167-5.918a1.578 1.578 0 00-1.26.518 2.309 2.309 0 00-.557 1.406h3.411a2.178 2.178 0 00-.407-1.424 1.448 1.448 0 00-1.187-.5zM70.8 53.782c-.4.005-.797-.07-1.167-.222a2.205 2.205 0 01-.871-.721v3.754H67.76v-9.432h.909v.962c.219-.329.519-.596.871-.777.37-.153.768-.228 1.168-.221.768-.043 1.51.28 2.002.869.508.73.756 1.609.705 2.496a3.84 3.84 0 01-.723 2.478 2.376 2.376 0 01-1.891.814zm-.148-5.9a1.745 1.745 0 00-1.446.556 2.787 2.787 0 00-.444 1.756v.222a3.322 3.322 0 00.444 1.96c.38.411.925.629 1.484.592a1.54 1.54 0 001.316-.684c.34-.556.507-1.199.482-1.85a3.12 3.12 0 00-.482-1.849 1.577 1.577 0 00-1.354-.702z"
-                    fill-rule="nonzero"></path>
-                  <path d="M79.607 53.671V44.98h1v7.786h3.857v.906z"></path>
-                  <path
-                    d="M91.639 50.416a3.563 3.563 0 01-.723 2.478 2.784 2.784 0 01-2.207.888 2.879 2.879 0 01-1.557-.407 2.795 2.795 0 01-1.057-1.165 4.19 4.19 0 01-.37-1.85 3.693 3.693 0 01.797-2.477 2.859 2.859 0 012.225-.888 2.747 2.747 0 012.169.906c.553.716.811 1.616.723 2.515zm-4.969 0c-.039.655.137 1.304.5 1.85.347.452.896.702 1.465.665a1.745 1.745 0 001.465-.647 2.99 2.99 0 00.519-1.85 2.898 2.898 0 00-.52-1.849 1.707 1.707 0 00-1.482-.647 1.745 1.745 0 00-1.465.629 3.175 3.175 0 00-.482 1.85zM99.277 50.416a3.563 3.563 0 01-.798 2.478 2.859 2.859 0 01-2.224.888 2.972 2.972 0 01-1.557-.407 2.758 2.758 0 01-1.039-1.165 3.93 3.93 0 01-.37-1.85 3.527 3.527 0 01.797-2.477 2.821 2.821 0 012.206-.888c.829-.044 1.633.29 2.187.906.58.705.866 1.606.798 2.515zm-4.969 0c-.039.655.137 1.304.5 1.85.347.452.896.702 1.465.665a1.856 1.856 0 001.483-.647 3.12 3.12 0 00.501-1.85 3.009 3.009 0 00-.5-1.849 2.023 2.023 0 00-2.948 0 3.046 3.046 0 00-.5 1.831z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M102.447 50.342l.778-.961 2.114-2.22h1.168l-2.614 2.811 2.818 3.7h-1.187l-2.299-3.07-.76.628v2.441h-.982v-9.247h.964V50.342z">
-                  </path>
-                  <path
-                    d="M108.25 45.405a.628.628 0 01.166-.5.594.594 0 01.427-.166.538.538 0 01.408.166c.12.138.18.318.166.5a.61.61 0 01-.166.48.538.538 0 01-.408.167.594.594 0 01-.427-.167.61.61 0 01-.166-.48zm1.075 8.266h-.983v-6.51h.983v6.51z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M116.351 53.671v-4.216A1.698 1.698 0 00116 48.27a1.523 1.523 0 00-1.15-.388 1.856 1.856 0 00-1.501.555 2.806 2.806 0 00-.464 1.849v3.384h-1v-6.51h.815l.148.888c.206-.324.502-.582.853-.74.382-.18.801-.27 1.224-.258a2.488 2.488 0 011.853.554c.459.502.681 1.174.612 1.85v4.216h-1.038z">
-                  </path>
-                  <path
-                    d="M125.231 47.161v.63l-1.205.129c.281.38.43.84.427 1.313a1.847 1.847 0 01-.65 1.516 2.6 2.6 0 01-1.853.574h-.538c-.426.221-.649.499-.649.832a.407.407 0 00.223.388c.238.106.5.15.76.13h1.15a2.563 2.563 0 011.63.443c.392.313.607.796.575 1.295a1.848 1.848 0 01-.87 1.646 4.57 4.57 0 01-2.54.573 3.455 3.455 0 01-1.966-.48 1.515 1.515 0 01-.704-1.332 1.496 1.496 0 01.445-1.147c.29-.3.665-.506 1.075-.592a.982.982 0 01-.427-.351.886.886 0 01-.166-.536c-.01-.225.055-.446.185-.63.166-.212.374-.389.612-.517a1.853 1.853 0 01-.834-.703 2.178 2.178 0 01-.316-1.146 2.106 2.106 0 01.65-1.646 2.618 2.618 0 011.853-.573c.313-.003.624.035.927.11l2.206.074zm-5.19 7.601a.85.85 0 00.537.759c.393.207.835.303 1.28.277a3.4 3.4 0 001.853-.37 1.11 1.11 0 00.612-.999.794.794 0 00-.334-.74 2.675 2.675 0 00-1.242-.203h-1.168a1.597 1.597 0 00-1.057.315 1.183 1.183 0 00-.482.961zm.537-5.548c-.024.385.117.762.39 1.036a1.56 1.56 0 001.075.351 1.256 1.256 0 001.446-1.406 1.311 1.311 0 00-.368-1.098 1.318 1.318 0 00-1.097-.38 1.411 1.411 0 00-1.075.388 1.44 1.44 0 00-.371 1.146v-.037zM136.429 53.671l-1.02-2.755h-3.56l-1.056 2.755h-.946l3.449-8.71h.852l3.338 8.71h-1.057zm-1.39-3.699l-1.02-2.7c-.13-.332-.26-.758-.408-1.257-.1.426-.223.846-.37 1.257l-1.02 2.7h2.817z"
-                    fill-rule="nonzero"></path>
-                  <path
-                    d="M143.455 53.671v-4.216a1.717 1.717 0 00-.37-1.184 1.467 1.467 0 00-1.132-.388 1.856 1.856 0 00-1.501.555 2.824 2.824 0 00-.482 1.849v3.384h-.983v-9.247h.983v2.811c.02.277.02.556 0 .833.203-.32.492-.576.834-.74a2.6 2.6 0 011.224-.277 2.507 2.507 0 011.853.573c.459.5.675 1.176.594 1.85v4.197h-1.02z">
-                  </path>
-                  <path
-                    d="M149.703 53.782a2.989 2.989 0 01-2.3-.87 3.416 3.416 0 01-.87-2.44 3.692 3.692 0 01.778-2.497 2.561 2.561 0 012.095-.924 2.413 2.413 0 011.854.795c.544.574.843 1.337.834 2.126v.63h-4.505a2.677 2.677 0 00.593 1.738c.404.408.965.624 1.54.591a5.258 5.258 0 002.094-.443v.887a4.906 4.906 0 01-2.113.407zm-.278-5.918a1.615 1.615 0 00-1.261.518 2.42 2.42 0 00-.538 1.406h3.411a2.178 2.178 0 00-.426-1.424 1.448 1.448 0 00-1.186-.5zM158.323 53.671l-.204-.924a2.76 2.76 0 01-.964.832c-.383.151-.793.22-1.205.203a2.228 2.228 0 01-1.538-.5 1.847 1.847 0 01-.538-1.405c0-1.313 1.057-2.015 3.152-2.07h1.112v-.408a1.643 1.643 0 00-.334-1.128 1.374 1.374 0 00-1.057-.37 4.29 4.29 0 00-1.853.5l-.316-.759c.34-.165.694-.302 1.057-.407a5.017 5.017 0 011.15-.147 2.581 2.581 0 011.742.517c.409.454.61 1.057.556 1.665v4.401h-.76zm-2.243-.703c.53.03 1.048-.15 1.446-.499.37-.371.566-.882.538-1.405v-.592h-1.001a3.604 3.604 0 00-1.687.37 1.09 1.09 0 00-.52.998c-.02.305.096.602.316.814.255.21.577.322.908.314zM165.998 52.802a2.338 2.338 0 01-2.057.98 2.376 2.376 0 01-1.984-.87 3.692 3.692 0 01-.723-2.477c-.055-.89.2-1.773.723-2.497a2.413 2.413 0 011.984-.887c.8-.047 1.567.316 2.039.961v-3.588h.945v9.247h-.797l-.13-.869zm-1.983.166a1.856 1.856 0 001.464-.554 2.824 2.824 0 00.464-1.85v-.203a3.34 3.34 0 00-.464-1.979 1.856 1.856 0 00-1.483-.592 1.521 1.521 0 00-1.335.685 3.415 3.415 0 00-.445 1.849 3.193 3.193 0 00.445 1.85c.278.486.793.788 1.354.794z"
-                    fill-rule="nonzero"></path>
-                </g>
-                <g fill="#41007F">
-                  <path
-                    d="M84.297 37.027L99.851 3.74a.89.89 0 01.835-.518c.358-.015.69.19.834.518l15.573 33.288h3.485L104.393 2.39a4.08 4.08 0 00-3.707-2.374 4.08 4.08 0 00-3.708 2.374L80.793 37.027h3.504zM49.778 33.883a.947.947 0 01-.946-.961V.04H45.68v32.882a4.082 4.082 0 001.194 2.901 4.102 4.102 0 002.904 1.204h25.009v-3.144h-25.01zM33.445 37.027h4.078L21.821 16.98 35.095.04H31.09L4.765 33.643a.798.798 0 01-.964.277.832.832 0 01-.575-.814V.04H.074v33.066a3.94 3.94 0 002.707 3.792c.43.145.881.22 1.335.222a3.952 3.952 0 003.133-1.535l12.57-16.053 13.626 17.495z">
-                  </path>
-                </g>
-                <path class="logo-plus" fill="#00A7E1" d="M129.847.04h37.078v36.987h-37.078z"></path>
-                <path fill="#FFF"
-                  d="M164.145 16.795h-14.016V2.815h-3.485v13.98h-14.016v3.477h14.016v13.981h3.485V20.272h14.016z">
-                </path>
-              </g>
-
-            </svg>
-          </div>
-          <!-- <button class="btn btn-light btn-xl js-scroll-trigger" onclick="toggleDetails('exp2')">More Info</button> -->
-          <p class="text-muted">Dec 2021 - June 2022 : </p>
-        </div>
-        <div id="exp2" class="details m-1 d-flex flex-column justify-content-center">
-          <ul>
-            <li>Ported legacy unmanaged code to managed C# to improve system stability.</li>
-            <li>Reduced memory management issues by transitioning from unmanaged to managed code.</li>
-          </ul>
-
-        </div>
-      </div>
-
-
-
-    </div>
-    <div class="text-center">
-      <a class="btn btn-primary btn-xl js-scroll-trigger" href="#funstuff">
-        Boring, show me some fun stuff!</a>
-    </div>
-
-    </div>
-  </section>
-  <!-- Some fun stuff, leave the boring code for last. -->
-  <section class="bg-primary" id="funstuff">
-    <div class="container-fluid">
-      <div class="row images-vcenter">
-
-        <div class="col-lg-12 pb-3 text-center">
-          <h2 class="section-heading text-white">Fun stuffs</h2>
-          <hr class="hr-black">
-        </div>
-
-        <!-- Fun stuff -->
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5 col-sm-6 text-center">
-          <a class="href-black" href="https://www.storyshaala.com" target="_blank">
-            <img src="img/storyshaala.png" style="width: 8em;" class="img-fluid images-border images-size-mtb"
-              alt="StoryShaala">
-          </a>
-          <h3 class="mt-4 mb-4 text-white"><strong>StoryShaala</strong></h3>
-          <p class="text-faded no-margin">A place where a single story is written by many people.</p>
-          <p class="text-faded no-margin">Help you Improv!</p>
-
-          </p>
-        </div>
-        <div class="col-lg-5 col-sm-6 text-center">
-          <a target="_blank" class="href-black" href="https://housie-online.herokuapp.com/">
-            <img src="img/housie.png" style="width: 8em;" class="img-fluid images-border images-size-mtb"
-              alt="Housie online">
-
-          </a>
-          <h3 class="mt-4 mb-4 text-white no-margin"><strong>Housie <small>online</small></strong></h3>
-          <p class="text-faded no-margin">Play housie with friends online.</p>
-
-
-          </p>
-        </div>
-        <div class="col-l-1"></div>
-
-      </div>
-
-      <div class="row images-vcenter">
-
-
-
-
-
-        <div class="col-lg-12 col-sm-6 text-center">
-          <a class="href-black" href="https://saumyaprakash.myportfolio.com" target="_blank">
-            <img src="img/photography.png" style="width: 8em;" class="img-fluid images-border images-size-mtb"
-              alt="Photography portfolio">
-          </a>
-          <h3 class="mt-4 mb-4 text-white"><strong>Photography</strong></h3>
-          <p class="text-faded no-margin">A hobby</p>
-
-          </p>
-        </div>
-
-
-
-
-
-      </div>
-
-
-
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#github">Cool, show me the
-            <&nbsp;&frasl;&nbsp;CODE&nbsp;>
-          </a>
-        </div>
-      </div>
-      <!-- <div class="text-center">
-        <a class="btn btn-black btn-xl js-scroll-trigger" href="#github">
-        Cool, show me the <&nbsp;&frasl;&nbsp;CODE&nbsp;></a>
-     </div> -->
-    </div>
-  </section>
-
-  <!-- GitHub Section -->
-  <section class="min-padding-top bg-dark" id="github">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-
-          <!-- Tweaking this part so the title links straight to my GitHub
-          page, without adding the silly extra "CLICK THIS ICON" text that was
-          there before. -->
-          <div class="col-lg-12 pb-3 text-center">
-            <h2 class="section-heading text-white">Projects</h2>
-            <span class="section-heading ">
-              <i class="fa fa-1x fa-github-square" style="color:white"></i>
-              <!-- <a class="text-white-link" href="https://github.com/saumyaprakash30" class="RtnRed">@saumyaprakash30 -->
-              <span class="text-faded" class="text-muted"><a href="https://github.com/saumyaprakash30"
-                  target="_blank"><span class="text-white">/saumyaprakash30</span></a></span>
-
-              </a>
-            </span>
-            <!-- <hr class="hr-black"> -->
-
-          </div>
-
-          <hr class="light">
-        </div>
-      </div>
-    </div>
-
-    <!-- GitHub links below -->
-    <div class="container-fluid p-0=">
-      <!-- p-0 makes the images go edge to edge (no padding) -->
-      <div class="row ">
-        <!-- First Link: -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" href="https://github.com/saumyaprakash30/IpMessenger">
-
-            <img class="img-responsive" width="100%" height="auto" alt="">
-            <div class=" ">
-              <div class="-content">
-                <div class=" ">
-                  <strong>Ip Messenger</strong>
-                </div>
-                <div class="project-name text-faded">
-                  <small>A java application that can be use for chatting and transferring files over private
-                    network.</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Second Link:  -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" href="https://source.unsplash.com/Pra1zTRwqg0/650x350" target="_blank">
-
-            <img class="img-responsive" width="100%" height="auto" alt="">
-            <div class="">
-              <div class="-content">
-                <div class=" ">
-                  <strong>IndoGuide</strong>
-                </div>
-                <div class="project-name text-faded">
-                  <small>An indoor positioning system for navigation</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Third Link:  -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" href="https://github.com/saumyaprakash30/K-Median-a-hardware-approach">
-
-            <img class="img-responsive" width="100%" height="auto" alt="">
-            <div class="">
-              <div class="-content">
-                <div class=" ">
-                  <strong>K-Median-a-hardware-approach</strong>
-                </div>
-                <div class="project-name text-faded">
-                  <small>Designing an AI processor with Hardware Descriptive Lang. mimic K-median</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Fourth Link:  -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/housie">
-
-            <img class="img-responsive" width="100%" height="auto" alt="">
-            <div class="">
-              <div class="-content">
-                <div class="">
-                  <strong>Housie</strong>
-                </div>
-                <div class="project-name  text-faded">
-                  <small>Online platform for playing Housie with friends and family</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Fifth Link: -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Hisaab-Kitaab">
-
-            <img class="img-responsive" width="100%" height="auto" alt="">
-            <div class="">
-              <div class="-content">
-                <div class="   ">
-                  <strong>Hisaab-Kitaab App</strong>
-                </div>
-                <div class="project-name text-faded">
-                  <small>An application for maintaing personal ledger among friends in college</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Sixth Link: s -->
-        <div class="col-lg-4 col-sm-6 border border-light">
-          <a class="portfolio-box" target="_blank" href="https://github.com/saumyaprakash30/Appartment-Managing-App">
-
-            <img class="img-responsive" width="100%" height="auto"
-              src="https://unsplash.com/photos/a-tree-in-the-middle-of-a-field-under-a-night-sky-Ms9OQ3xS3xI" alt="">
-            <div class="">
-              <div class="-content">
-                <div class=" ">
-                  <strong>Appartment-Managing-App</strong>
-                </div>
-                <div class="project-name text-faded">
-                  <small>An app which can be used by apartment secretary to maintain data.</small>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Medium Section -->
-  <section class="min-padding-top bg-dark">
-    <div class="container text-center p-5 ">
-      <h2 class="section-heading text-white">Latest Articles by Saumya Prakash</h2>
-      <span class="text-faded p-2 " class="text-muted"><a href="https://medium.com/@saumyaprakash30" target="_blank"><span
-            class="text-white">medium/saumyaprakash30</span></a></span>
-
-      </a>
-      <div id="medium-feed" class="feed-container">Loading...</div>
-    </div>
-
-
-    <script>
-      const rssUrl = encodeURIComponent('https://medium.com/@saumyaprakash30/feed');
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
-
-      fetch(apiUrl)
-        .then(res => res.json())
-        .then(data => {
-          const container = document.getElementById('medium-feed');
-          container.innerHTML = ''; // clear loading message
-
-          data.items.slice(0, 8).forEach(post => {
-            const card = document.createElement('div');
-            card.className = 'feed-card';
-            card.innerHTML = `
-            <a href="${post.link}" target="_blank">${post.title}</a>
-            <small>${new Date(post.pubDate).toLocaleDateString()}</small>
-          `;
-            container.appendChild(card);
-          });
-        })
-        .catch(err => {
-          document.getElementById('medium-feed').innerHTML = 'Failed to load feed.';
-          console.error('Error:', err);
-        });
-    </script>
-    </script>
-  </section>
-
-  <!-- Contact section -->
-  <section class="min-padding" id="contact">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
     <div class="container">
-
-      <!-- Contact Jason Row -->
-      <div class="row">
-        <div class="col-lg-8 mx-auto text-center">
-          <h2 class="section-heading">
-
-            <!-- Attempting to avoid spam by removing @ and the dot in my domain -->
-            Contact Sp
-          </h2>
-          <hr class="primary">
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <p>You can also find my personal email, LinkedIn and GitHub below too.</p>
-        </div>
-      </div>
-
-      <!-- Email, LinkedIn, and GitHub links  -->
-      <div class="row">
-
-        <div class="col-4 col-sm-4 col-lg-2 offset-lg-3 text-center">
-          <a target="_blank" href="mailto:saumyaprakash30@gmail.com">
-            <i class="fa fa-envelope fa-4x sr-icons"></i>
-          </a>
-          <p><a href="mailto:saumyaprakash30@gmail.com" class="RtnRed">Email</a></p>
-
-        </div>
-
-        <div class="col-4 col-sm-4 col-lg-2 text-center">
-          <a href="https://www.linkedin.com/in/saumyaprakash" target="_blank">
-            <i class="fa fa-linkedin-square fa-4x sr-icons"></i>
-          </a>
-          <p><a href="https://www.linkedin.com/in/saumyaprakash" class="RtnRed">LinkedIn</a></p>
-        </div>
-
-        <div class="col-4 col-sm-4 col-lg-2 text-center">
-          <a target="_blank" href="https://github.com/saumyaprakash30">
-            <i class="fa fa-github-square fa-4x sr-icons"></i>
-          </a>
-          <p><a href="https://github.com/saumyaprakash30" class="RtnRed">GitHub</a></p>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="hero-content">
+            <h1 class="hero-title">Saumya Prakash</h1>
+            <h2 class="hero-subtitle font-mono">Software Engineer</h2>
+            <p class="hero-description">
+              Passionate about creating innovative solutions and building scalable software. 
+              Currently working as Tech Lead IC at Applied Materials, specializing in Java, Spring Boot, and modern web technologies.
+            </p>
+            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center mb-4">
+              <img src="https://www.appliedmaterials.com/content/dam/applied-materials/Applied-Materials-Logo-No-Tag-Line.png"
+                   alt="Applied Materials" class="company-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; color: white; font-weight: bold; font-size: 1.5rem;">
+                Applied Materials
+              </div>
+            </div>
+            <div class="mb-4">
+              <p class="mb-3">
+                <i class="fas fa-envelope me-2"></i>saumyaprakash30@gmail.com |
+                <a href="https://www.linkedin.com/in/saumyaprakash/" target="_blank" class="text-decoration-none ms-2">
+                  <i class="fab fa-linkedin me-1"></i>LinkedIn
+                </a> |
+                <a href="https://github.com/saumyaprakash30" target="_blank" class="text-decoration-none ms-2">
+                  <i class="fab fa-github me-1"></i>GitHub
+                </a>
+              </p>
+            </div>
+            <a href="#about" class="btn-primary-custom">Discover More</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!--  THIS IS THE FOOTER - displays a copyright notice and
-        that Bootstrap powers this web page.
+  <!-- About/Education Section -->
+  <section class="section education-section" id="about">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Education & Background</h2>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 animate-on-scroll">
+          <div class="education-card text-center">
+            <i class="fas fa-graduation-cap education-icon"></i>
+            <h4>Degree</h4>
+            <p class="fw-bold mb-2">Dual Degree (B.Tech + M.Tech)</p>
+            <p class="text-muted">Computer Engineering</p>
+            <a href="https://www.iiitdm.ac.in/" target="_blank" class="text-decoration-none">IIIT DM Kancheepuram</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll">
+          <div class="education-card text-center">
+            <i class="fas fa-calendar education-icon"></i>
+            <h4>Graduation</h4>
+            <p class="text-muted">May 2022</p>
+            <p class="fw-bold">CGPA: 8.5</p>
+            <p class="text-muted">Specialization in System Design</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll">
+          <div class="education-card text-center">
+            <i class="fas fa-code education-icon"></i>
+            <h4>Languages</h4>
+            <p class="text-muted mb-1">C#, C++, C++/CLI</p>
+            <p class="text-muted mb-1">Python, Java, JavaScript</p>
+            <p class="text-muted">SQL, MongoDB</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 animate-on-scroll">
+          <div class="education-card text-center">
+            <i class="fas fa-tools education-icon"></i>
+            <h4>Technologies</h4>
+            <p class="text-muted mb-1">.NET Core, ASP.NET</p>
+            <p class="text-muted mb-1">Angular, gRPC, REST APIs</p>
+            <p class="text-muted">Docker, Azure DevOps, Git</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        6/16/2018: Added new line for the Source on Github... part, with margin bottom
-                   set to 1 (awesome new bootstrap 4 mb-1 class)-->
-  <div class="container">
-    <p class="text-center text-muted text-small mb-1">
+  <!-- Experience Section -->
+  <section class="section work-section" id="experience">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Work Experience</h2>
+      
+      <!-- Current Role -->
+      <div class="work-card animate-on-scroll">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+            <i class="fas fa-rocket fa-4x text-primary mb-3"></i>
+            <h3>Tech Lead IC</h3>
+            <div class="mb-3">
+              <img src="https://www.appliedmaterials.com/content/dam/applied-materials/Applied-Materials-Logo-No-Tag-Line.png"
+                   alt="Applied Materials" class="company-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; color: white; font-weight: bold; font-size: 1.5rem; margin: 1rem 0;">
+                Applied Materials
+              </div>
+            </div>
+            <p class="text-light">June 2025 - Present</p>
+          </div>
+          <div class="col-lg-8">
+            <h5 class="text-primary mb-3">Current Position</h5>
+            <p class="mb-3">Leading technical initiatives and driving innovation in semiconductor manufacturing solutions.</p>
+            <ul class="text-light">
+              <li>Leading cross-functional teams in developing cutting-edge software solutions</li>
+              <li>Architecting scalable systems for semiconductor manufacturing equipment</li>
+              <li>Mentoring junior developers and establishing best practices</li>
+              <li>Driving technical decision-making and technology adoption strategies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-      Powered by <a href="http://www.getbootstrap.com/" class="text-blue">Bootstrap</a>.
-    </p>
-    <p class="text-center text-muted text-small">
-      Source on <a href="https://github.com/JasonD94/jasond94.github.io" class="text-blue">GitHub</a>.
-      Theme based on the
-      <a href="http://startbootstrap.com/template-overviews/creative/" class="text-blue">Creative Bootstrap Theme</a>
-      by <a href="http://startbootstrap.com/" class="text-blue">Start Bootstrap</a>.
-    </p>
-  </div>
+      <!-- Previous Role -->
+      <div class="work-card animate-on-scroll">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+            <i class="fas fa-laptop-code fa-4x text-secondary mb-3"></i>
+            <h3>Software Engineer 2</h3>
+            <div class="mb-3">
+              <img src="https://www.klacorp.com/images/logos/kla-logo-white.png" 
+                   alt="KLA Corporation" class="company-logo"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <div style="display: none; color: white; font-weight: bold; font-size: 1.5rem; margin: 1rem 0;">
+                KLA Corporation
+              </div>
+            </div>
+            <p class="text-light">July 2022 - May 2025</p>
+          </div>
+          <div class="col-lg-8">
+            <h5 class="text-secondary mb-3">Key Achievements</h5>
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="text-warning">Software Development</h6>
+                <ul class="text-light small">
+                  <li>Developed multi-threaded applications using .NET Core and C#</li>
+                  <li>Built scalable microservices architecture</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-warning">Infrastructure & Optimization</h6>
+                <ul class="text-light small">
+                  <li>Optimized build processes reducing deployment time by 40%</li>
+                  <li>Implemented CI/CD pipelines with Azure DevOps</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- 6/15/2018: Updated jQuery, added Popper.js, and updated Bootstrap JS to 4.1.1 -->
-  <!-- Also pulling in the Bootstrap 4 update from Start Bootstrap too
-       https://github.com/BlackrockDigital/startbootstrap-creative  -->
+      <!-- Intern Role -->
+      <div class="work-card animate-on-scroll">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+            <i class="fas fa-user-graduate fa-4x text-warning mb-3"></i>
+            <h3>Software Engineer Intern</h3>
+            <p class="text-light">Dec 2021 - June 2022</p>
+          </div>
+          <div class="col-lg-8">
+            <h5 class="text-warning mb-3">Foundation Building</h5>
+            <ul class="text-light">
+              <li>Contributed to core platform development using C# and .NET Framework</li>
+              <li>Participated in code reviews and agile development processes</li>
+              <li>Learned industry best practices and software engineering principles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- jQuery 3.3.1 -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Technical Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-item animate-on-scroll">
+          <i class="fab fa-microsoft skill-icon"></i>
+          <h5>Technical Skills</h5>
+          <p class="text-muted">Java, Spring boot, C#, .NET, C++</p>
+        </div>
+        
+        <div class="skill-item animate-on-scroll">
+          <i class="fas fa-database skill-icon"></i>
+          <h5>Databases</h5>
+          <p class="text-muted">SQL Server, MongoDB</p>
+        </div>
+        <div class="skill-item animate-on-scroll">
+          <i class="fab fa-angular skill-icon"></i>
+          <h5>Frontend</h5>
+          <p class="text-muted">Angular</p>
+        </div>
+        <div class="skill-item animate-on-scroll">
+          <i class="fas fa-network-wired skill-icon"></i>
+          <h5>APIs & Integration</h5>
+          <p class="text-muted">REST APIs, gRPC, Microservices</p>
+        </div>
+        <div class="skill-item animate-on-scroll">
+          <i class="fas fa-mobile-alt skill-icon"></i>
+          <h5>Mobile Development</h5>
+          <p class="text-muted">Flutter</p>
+        </div>
+        <div class="skill-item animate-on-scroll">
+          <i class="fas fa-cloud skill-icon"></i>
+          <h5>Cloud & DevOps</h5>
+          <p class="text-muted">Docker, Azure DevOps</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Bootstrap 4.1 JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-    crossorigin="anonymous"></script>
+  <!-- Contact Section -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">Let's Connect</h2>
+      <div class="row g-4">
+        <div class="col-md-4 animate-on-scroll">
+          <a href="mailto:saumyaprakash30@gmail.com" class="contact-link">
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <h5>Email</h5>
+              <p>saumyaprakash30@gmail.com</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 animate-on-scroll">
+          <a href="https://www.linkedin.com/in/saumyaprakash/" target="_blank" class="contact-link">
+            <div class="contact-item">
+              <i class="fab fa-linkedin contact-icon"></i>
+              <h5>LinkedIn</h5>
+              <p>Connect with me</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 animate-on-scroll">
+          <a href="https://github.com/saumyaprakash30" target="_blank" class="contact-link">
+            <div class="contact-item">
+              <i class="fab fa-github contact-icon"></i>
+              <h5>GitHub</h5>
+              <p>View my projects</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Plugin & Theme JavaScript (With Bootstrap 4 Update) -->
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="js/scrollreveal.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/creative.min.js"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Saumya Prakash. Crafted with <i class="fas fa-heart text-danger"></i> using modern web technologies.</p>
+      <p class="small">Powered by Bootstrap 5 & Font Awesome</p>
+    </div>
+  </footer>
 
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('mainNav');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Typing effect for hero subtitle
+    const subtitle = document.querySelector('.hero-subtitle');
+    if (subtitle) {
+      const text = 'Software Engineer';
+      subtitle.innerHTML = '';
+      
+      setTimeout(() => {
+        let i = 0;
+        const typeWriter = () => {
+          if (i < text.length) {
+            subtitle.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+          }
+        };
+        typeWriter();
+      }, 1000);
+    }
+  </script>
 </body>
 
 </html>
