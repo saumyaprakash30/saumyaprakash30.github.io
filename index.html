@@ -29,6 +29,9 @@
   <!-- Custom favicon -->
   <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 
+  <!-- Spring Physics Library -->
+  <script src="https://cdn.jsdelivr.net/npm/popmotion@11.0.5/dist/popmotion.global.min.js"></script>
+
   <!-- Modern CSS -->
   <style>
     :root {
@@ -52,26 +55,76 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       color: var(--text-primary);
       overflow-x: hidden;
+      background: #000;
     }
 
     .font-mono {
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Glassmorphism Effect */
-    .glass {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
+    /* ========== INFINITE ZOOM KEYFRAMES ========== */
+    @keyframes infiniteZoomIn {
+      from {
+        transform: scale(0.3) translateZ(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+      }
     }
 
-    /* Navigation */
+    @keyframes infiniteZoomOut {
+      from {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+      }
+      to {
+        transform: scale(3) translateZ(0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes zoomInSection {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* ========== NAVIGATION ========== */
     .navbar {
       position: fixed;
       top: 0;
@@ -80,12 +133,14 @@
       padding: 1rem 0;
       transition: all 0.3s ease;
       background: transparent;
+      backdrop-filter: blur(10px);
     }
 
     .navbar.scrolled {
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.9);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     }
 
     .navbar-brand {
@@ -108,30 +163,16 @@
       transform: translateY(-2px);
     }
 
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--primary-color);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    /* Hero Section */
+    /* ========== HERO SECTION ========== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       display: flex;
       align-items: center;
+      justify-content: center;
       position: relative;
       overflow: hidden;
+      perspective: 1200px;
     }
 
     .hero::before {
@@ -142,11 +183,24 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 20% 20%, var(--primary-color) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, var(--secondary-color) 0%, transparent 50%),
-        radial-gradient(circle at 40% 60%, var(--accent-color) 0%, transparent 50%);
-      opacity: 0.1;
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
       animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.2), transparent 70%),
+        radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.2), transparent 70%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     @keyframes float {
@@ -160,6 +214,8 @@
       z-index: 2;
       color: white;
       text-align: center;
+      animation: infiniteZoomIn 1s ease-out;
+      padding-top: 80px;
     }
 
     .hero-title {
@@ -170,14 +226,15 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: slideInUp 1s ease-out;
+      animation: infiniteZoomIn 1.2s ease-out;
     }
 
     .hero-subtitle {
       font-size: 1.5rem;
       margin-bottom: 2rem;
       color: var(--text-light);
-      animation: slideInUp 1s ease-out 0.2s both;
+      animation: infiniteZoomIn 1.4s ease-out;
+      letter-spacing: 3px;
     }
 
     .hero-description {
@@ -187,20 +244,11 @@
       margin-left: auto;
       margin-right: auto;
       color: rgba(255, 255, 255, 0.8);
-      animation: slideInUp 1s ease-out 0.4s both;
+      animation: infiniteZoomIn 1.6s ease-out;
+      line-height: 1.8;
     }
 
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* ========== BUTTONS ========== */
     .btn-primary-custom {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       border: none;
@@ -210,16 +258,17 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       text-decoration: none;
       display: inline-block;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
     }
 
     .btn-primary-custom:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.5);
       color: white;
     }
 
@@ -230,138 +279,688 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
     }
 
     .btn-primary-custom:hover::before {
       left: 100%;
     }
 
-    /* Section Styles */
-    .section {
-      padding: 100px 0;
+    /* ========== SPRING PHYSICS ANIMATIONS ========== */
+    
+    @keyframes springBounce {
+      0% {
+        transform: scale(1) translateY(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.05) translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes springRotate {
+      0% {
+        transform: rotateY(90deg) rotateZ(0deg);
+        opacity: 0;
+      }
+      50% {
+        transform: rotateY(-5deg) rotateZ(2deg);
+        opacity: 1;
+      }
+      100% {
+        transform: rotateY(0deg) rotateZ(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes springScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    @keyframes springFloat {
+      0%, 100% { 
+        transform: translateY(0px) translateX(0px);
+      }
+      25% { 
+        transform: translateY(-15px) translateX(5px);
+      }
+      50% { 
+        transform: translateY(-8px) translateX(-8px);
+      }
+      75% { 
+        transform: translateY(-12px) translateX(3px);
+      }
+    }
+
+    @keyframes springPulse {
+      0%, 100% { 
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      }
+      50% { 
+        box-shadow: 0 20px 50px rgba(99, 102, 241, 0.5);
+      }
+    }
+
+    /* Spring easing cubic-bezier approximation */
+    .spring-ease {
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ========== SPRING PARALLAX LAYERS ========== */
+    
+    .spring-parallax-container {
       position: relative;
+      overflow: hidden;
+    }
+
+    .spring-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+    }
+
+    /* Hero parallax spring effect */
+    .hero-parallax {
+      transform-style: preserve-3d;
+    }
+
+    .hero-parallax .layer-1 {
+      transform: translateZ(-500px) scale(2);
+    }
+
+    .hero-parallax .layer-2 {
+      transform: translateZ(-200px) scale(1.5);
+    }
+
+    .hero-parallax .layer-3 {
+      transform: translateZ(-50px) scale(1.2);
+    }
+
+    /* Spring scroll indicators */
+    .spring-indicator {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .spring-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.3);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 2px solid rgba(99, 102, 241, 0.5);
+    }
+
+    .spring-dot.active {
+      width: 24px;
+      height: 12px;
+      border-radius: 6px;
+      background: var(--primary-color);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+      transform: scaleX(1.2);
+    }
+
+    /* Spring card animations */
+    .spring-card {
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .spring-card:nth-child(1) { animation-delay: 0s; }
+    .spring-card:nth-child(2) { animation-delay: 0.1s; }
+    .spring-card:nth-child(3) { animation-delay: 0.2s; }
+    .spring-card:nth-child(4) { animation-delay: 0.3s; }
+
+    /* Spring section entrance */
+    .spring-section-enter {
+      animation: springRotate 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Hover spring effects */
+    .has-spring-hover {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .has-spring-hover:hover {
+      animation: springScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .has-spring-hover:hover {
+      box-shadow: 0 30px 80px rgba(99, 102, 241, 0.4) !important;
+    }
+    
+    /* Parallax depth mapping */
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .parallax-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* Sky layer - slowest */
+    .layer-sky {
+      background: linear-gradient(180deg, 
+        rgba(15, 23, 42, 0) 0%,
+        rgba(99, 102, 241, 0.1) 50%,
+        rgba(6, 182, 212, 0.2) 100%);
+      transform: translateY(0);
+      z-index: -3;
+    }
+
+    /* Mountain/Background - very slow */
+    .layer-mountains {
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(45, 27, 78, 0.3) 40%,
+        rgba(26, 27, 46, 0.6) 100%);
+      transform: translateY(0);
+      z-index: -2;
+    }
+
+    /* Clouds/Mist - slow parallax */
+    .layer-clouds {
+      background: radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.1), transparent 50%),
+                  radial-gradient(ellipse at 80% 50%, rgba(255, 255, 255, 0.1), transparent 50%);
+      animation: driftClouds 30s linear infinite;
+      z-index: -1;
+    }
+
+    /* Medium layer - medium speed */
+    .layer-mid {
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(99, 102, 241, 0.1) 50%,
+        rgba(34, 197, 94, 0.1) 100%);
+      z-index: 0;
+    }
+
+    /* Foreground - fastest */
+    .layer-foreground {
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(34, 197, 94, 0.2) 50%,
+        rgba(16, 32, 16, 0.4) 100%);
+      z-index: 1;
+    }
+
+    @keyframes driftClouds {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 0; }
+    }
+
+    /* Story progression indicator */
+    .story-marker {
+      position: relative;
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Narrative text styling */
+    .story-intro {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 2rem 0;
+      max-width: 600px;
+      line-height: 1.8;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Timeline/Path visualization */
+    .story-path {
+      position: relative;
+      padding: 2rem 0;
+      margin: 2rem 0;
+    }
+
+    .story-path::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, 
+        var(--primary-color) 0%,
+        var(--secondary-color) 50%,
+        var(--accent-color) 100%);
+      transform: translateX(-50%);
+    }
+
+    /* Journey waypoint */
+    .waypoint {
+      position: relative;
+      margin: 3rem 0;
+      animation: waypoint-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes waypoint-glow {
+      0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+      }
+      50% { 
+        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+      }
+    }
+
+    /* Scroll progress indicator */
+    .scroll-progress-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, 
+        var(--primary-color) 0%,
+        var(--secondary-color) 50%,
+        var(--accent-color) 100%);
+      z-index: 1001;
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Section story cards */
+    .story-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .story-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Artistic dividers */
+    .artistic-divider {
+      position: relative;
+      height: 100px;
+      margin: 4rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .artistic-divider::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .artistic-divider::after {
+      content: '✦';
+      position: relative;
+      z-index: 1;
+      font-size: 2rem;
+      color: var(--primary-color);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0 1rem;
+      animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Depth-based opacity */
+    .depth-fade {
+      transition: opacity 0.3s ease;
+    }
+
+    .depth-fade.far { opacity: 0.4; }
+    .depth-fade.near { opacity: 1; }
+
+    .section {
+      padding: 150px 0 200px 0;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .section.zoom-section {
+      animation: zoomInSection 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     .section-title {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 3rem;
       text-align: center;
       position: relative;
+      animation: infiniteZoomIn 1s ease-out;
     }
 
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
+      width: 100px;
+      height: 5px;
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      border-radius: 2px;
+      border-radius: 3px;
+      animation: slideInRight 0.8s ease-out 0.3s both;
     }
 
-    /* Education Section */
+    /* ========== SCENERY BACKGROUNDS ========== */
+    
+    /* About Section - Forest Green */
     .education-section {
-      background: var(--light-bg);
+      background: linear-gradient(135deg, #1a3a2a 0%, #0f2818 50%, #082010 100%);
+      color: white;
+      position: relative;
     }
 
+    .education-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 30% 30%, rgba(34, 197, 94, 0.2), transparent 40%),
+        radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.1), transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Work Section - Mountain Purple */
+    .work-section {
+      background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 50%, #0d0618 100%);
+      color: white;
+      position: relative;
+    }
+
+    .work-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15), transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(59, 130, 246, 0.1), transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Skills Section - Sky Blue */
+    .skills-section {
+      background: linear-gradient(135deg, #0c4a6e 0%, #082f49 50%, #051a2c 100%);
+      color: white;
+      position: relative;
+    }
+
+    .skills-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.2), transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(34, 197, 94, 0.1), transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Photography Section - Ocean */
+    .photography-section {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f2847 50%, #051829 100%);
+      color: white;
+      position: relative;
+    }
+
+    .photography-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.3), transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(3, 102, 214, 0.2), transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Contact Section - Sunset */
+    .contact-section {
+      background: linear-gradient(135deg, #5d2a2a 0%, #3d1a1a 50%, #1a0f0f 100%);
+      color: white;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.2), transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(239, 68, 68, 0.15), transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ========== CARDS ========== */
     .education-card {
-      background: white;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
-      padding: 2rem;
+      padding: 2.5rem;
       height: 100%;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(99, 102, 241, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .education-card:nth-child(1) { animation-delay: 0s; }
+    .education-card:nth-child(2) { animation-delay: 0.15s; }
+    .education-card:nth-child(3) { animation-delay: 0.3s; }
+    .education-card:nth-child(4) { animation-delay: 0.45s; }
+
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .education-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 30px 70px rgba(99, 102, 241, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .education-card:hover::before {
+      opacity: 1;
     }
 
     .education-icon {
       font-size: 3rem;
       color: var(--primary-color);
       margin-bottom: 1.5rem;
+      animation: floatUp 3s ease-in-out infinite;
     }
 
-    /* Work Experience */
-    .work-section {
-      background: var(--dark-bg);
-      color: white;
-    }
-
+    /* ========== WORK CARDS ========== */
     .work-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
-      padding: 2rem;
+      padding: 2.5rem;
       margin-bottom: 2rem;
-      transition: all 0.3s ease;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .work-card:nth-child(1) { animation-delay: 0s; }
+    .work-card:nth-child(2) { animation-delay: 0.15s; }
+    .work-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .work-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
 
     .work-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.02) translateY(-5px);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 60px rgba(99, 102, 241, 0.2);
     }
 
-    .company-logo {
-      max-width: 150px;
-      max-height: 60px;
-      filter: brightness(0) invert(1);
-      margin: 1rem 0;
-      object-fit: contain;
-      background: transparent;
+    .work-card:hover::before {
+      opacity: 1;
     }
 
-    .company-logo:hover {
-      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-    }
-
-    /* Skills Section */
+    /* ========== SKILLS GRID ========== */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
       margin-top: 3rem;
     }
 
     .skill-item {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      border-radius: 20px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .skill-item:nth-child(1) { animation-delay: 0s; }
+    .skill-item:nth-child(2) { animation-delay: 0.15s; }
+    .skill-item:nth-child(3) { animation-delay: 0.3s; }
+    .skill-item:nth-child(4) { animation-delay: 0.45s; }
+    .skill-item:nth-child(5) { animation-delay: 0.6s; }
+    .skill-item:nth-child(6) { animation-delay: 0.75s; }
+
+    .skill-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .skill-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 40px 80px rgba(99, 102, 241, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .skill-item:hover::after {
+      opacity: 1;
     }
 
     .skill-icon {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: var(--primary-color);
       margin-bottom: 1rem;
+      animation: floatUp 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Photography Section */
-    .photography-section {
-      background: var(--dark-bg);
-      color: white;
-    }
-
+    /* ========== PHOTOGRAPHY GRID ========== */
     .photography-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
       margin-top: 3rem;
     }
 
@@ -371,28 +970,35 @@
       overflow: hidden;
       aspect-ratio: 4/3;
       cursor: pointer;
-      transition: all 0.3s ease;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
     }
 
+    .photo-item:nth-child(1) { animation-delay: 0s; }
+    .photo-item:nth-child(2) { animation-delay: 0.2s; }
+    .photo-item:nth-child(3) { animation-delay: 0.4s; }
+
     .photo-item:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+      transform: scale(1.1) translateY(-15px);
+      box-shadow: 0 40px 80px rgba(99, 102, 241, 0.4);
     }
 
     .photo-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center;
       border-radius: 20px;
-      transition: all 0.3s ease;
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .photo-item:hover img {
-      transform: scale(1.1);
+      transform: scale(1.2);
+      filter: brightness(1.2);
     }
 
     .photo-overlay {
@@ -401,14 +1007,15 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(45deg, rgba(99, 102, 241, 0.8), rgba(6, 182, 212, 0.8));
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(6, 182, 212, 0.95));
       opacity: 0;
-      transition: all 0.3s ease;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       border-radius: 20px;
+      backdrop-filter: blur(10px);
     }
 
     .photo-item:hover .photo-overlay {
@@ -428,94 +1035,132 @@
       padding: 0 1rem;
     }
 
-    .photography-intro {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 4rem;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-      color: white;
-    }
-
-    .contact-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      height: 100%;
-    }
-
-    .contact-link:hover {
-      text-decoration: none;
-      color: inherit;
-    }
-
+    /* ========== CONTACT ITEMS ========== */
     .contact-item {
       text-align: center;
-      padding: 2rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
-      transition: all 0.3s ease;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
       height: 100%;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      animation: springBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
     }
 
+    .contact-item:nth-child(1) { animation-delay: 0s; }
+    .contact-item:nth-child(2) { animation-delay: 0.15s; }
+    .contact-item:nth-child(3) { animation-delay: 0.3s; }
+
     .contact-item:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.08) translateY(-10px);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 70px rgba(255, 255, 255, 0.2);
     }
 
     .contact-icon {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: white;
+      color: var(--accent-color);
+      animation: floatUp 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Footer */
+    /* ========== FOOTER ========== */
     .footer {
-      background: var(--darker-bg);
+      background: #000;
       color: var(--text-light);
-      padding: 2rem 0;
+      padding: 3rem 0;
       text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 3rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .section {
-        padding: 60px 0;
-      }
-    }
-
-    /* Scroll animations */
+    /* ========== ANIMATIONS ========== */
     .animate-on-scroll {
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
+      transform: scale(0.8) translateY(50px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .animate-on-scroll.animated {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .section {
+        padding: 100px 0 120px 0;
+        min-height: auto;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photography-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== COMPANY LOGO ========== */
+    .company-logo {
+      max-width: 150px;
+      max-height: 60px;
+      filter: brightness(0) invert(1);
+      margin: 1rem 0;
+      object-fit: contain;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .company-logo:hover {
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+
+    /* Fix text contrast on dark backgrounds */
+    .education-section .text-muted,
+    .work-section .text-muted,
+    .skills-section .text-muted,
+    .photography-section .text-muted,
+    .contact-section .text-muted {
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+
+    .education-card h4,
+    .education-card p,
+    .education-card a,
+    .skill-item h5,
+    .skill-item p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .education-card .fw-bold {
+      color: #fff;
     }
   </style>
+
 </head>
 
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-line"></div>
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg" id="mainNav">
     <div class="container">
@@ -548,7 +1193,7 @@
             <a class="nav-link" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://flatconnect.in" target="_blank">FlatConnect</a>
+            <a class="nav-link" href="#projects">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="SaumyaPrakashResume.pdf" target="_blank">Resume</a>
@@ -564,8 +1209,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="hero-content">
+            <div class="story-marker">✨ A Journey Begins</div>
             <h1 class="hero-title">Saumya Prakash</h1>
             <h2 class="hero-subtitle font-mono">Software Engineer</h2>
+            <p class="story-intro">
+              "Building bridges between ideas and code, climbing the mountain of technical excellence, 
+              one project at a time. This is my digital story."
+            </p>
             <p class="hero-description">
               Passionate about creating innovative solutions and building scalable software. 
               Currently working as Tech Lead IC at Applied Materials, specializing in Java, Spring Boot, and modern web technologies.
@@ -599,7 +1249,12 @@
   <!-- About/Education Section -->
   <section class="section education-section" id="about">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Education & Background</h2>
+      <div class="story-marker">📚 Chapter 1: The Foundation</div>
+      <h2 class="section-title animate-on-scroll">Building the Foundation</h2>
+      <p class="story-intro animate-on-scroll">
+        Every great journey starts with strong roots. My education shaped my problem-solving mindset 
+        and provided the tools to build digital solutions.
+      </p>
       <div class="row g-4">
         <div class="col-lg-3 col-md-6 animate-on-scroll">
           <div class="education-card text-center">
@@ -644,7 +1299,12 @@
   <!-- Experience Section -->
   <section class="section work-section" id="experience">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Work Experience</h2>
+      <div class="story-marker">🚀 Chapter 2: The Ascent</div>
+      <h2 class="section-title animate-on-scroll">Career Journey</h2>
+      <p class="story-intro animate-on-scroll">
+        From intern to tech leader, each role has been a stepping stone upward. 
+        Here's how I've climbed the mountain of professional growth.
+      </p>
       
       <!-- Current Role -->
       <div class="work-card animate-on-scroll">
@@ -757,9 +1417,14 @@
   </section>
 
   <!-- Skills Section -->
-  <section class="section" id="skills">
+  <section class="section skills-section" id="skills">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Technical Expertise</h2>
+      <div class="story-marker">⚙️ Chapter 3: The Toolkit</div>
+      <h2 class="section-title animate-on-scroll">Technical Arsenal</h2>
+      <p class="story-intro animate-on-scroll">
+        These are the tools and technologies I've mastered on my journey. 
+        Each skill is a weapon in my arsenal to create impactful solutions.
+      </p>
       <div class="skills-grid">
         <div class="skill-item animate-on-scroll">
           <i class="fab fa-microsoft skill-icon"></i>
@@ -799,12 +1464,12 @@
   <!-- Photography Section -->
   <section class="section photography-section" id="photography">
     <div class="container">
-      <h2 class="section-title animate-on-scroll">Photography Portfolio</h2>
+      <div class="story-marker">📸 Chapter 4: The View from the Top</div>
+      <h2 class="section-title animate-on-scroll">The Summit Perspective</h2>
       <div class="photography-intro animate-on-scroll">
         <p>
-          Beyond code and algorithms, I find inspiration through the lens of my camera. 
-          Photography allows me to capture moments, explore creativity, and see the world from different perspectives.
-          Explore my complete photography portfolio to see my creative journey.
+          From the peak, I capture the world differently. Photography is how I see beyond code—
+          moments, light, and emotions frozen in time.
         </p>
       </div>
 
@@ -842,10 +1507,97 @@
     </div>
   </section>
 
+  <!-- Personal Projects Section -->
+  <section class="section work-section" id="projects">
+    <div class="container">
+      <div class="story-marker">💡 Chapter 5: Personal Ventures</div>
+      <h2 class="section-title animate-on-scroll">Personal Projects</h2>
+      <p class="story-intro animate-on-scroll">
+        Beyond my professional work, I build products that solve real problems.
+        These are my passion projects that I've brought to life.
+      </p>
+
+      <!-- FlatConnect -->
+      <div class="work-card animate-on-scroll">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+            <i class="fas fa-building fa-4x text-primary mb-3"></i>
+            <h3>FlatConnect</h3>
+            <a href="https://flatconnect.in" target="_blank" class="btn-primary-custom mt-3" style="padding: 10px 20px; font-size: 0.9rem;">
+              <i class="fas fa-external-link-alt me-2"></i>Visit Site
+            </a>
+          </div>
+          <div class="col-lg-8">
+            <h5 class="text-primary mb-3">Connecting Flat Owners & Tenants</h5>
+            <p class="mb-3">A platform designed to bridge the gap between flat owners and potential tenants, making the rental process seamless and efficient.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="text-warning">Features</h6>
+                <ul class="text-light small">
+                  <li>Direct owner-tenant connection</li>
+                  <li>Property listing management</li>
+                  <li>Search & filter functionality</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-warning">Tech Stack</h6>
+                <ul class="text-light small">
+                  <li>Modern web technologies</li>
+                  <li>Responsive design</li>
+                  <li>User-friendly interface</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GoPartyo -->
+      <div class="work-card animate-on-scroll">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+            <i class="fas fa-microphone-alt fa-4x text-secondary mb-3"></i>
+            <h3>GoPartyo</h3>
+            <a href="https://gopartyo.com" target="_blank" class="btn-primary-custom mt-3" style="padding: 10px 20px; font-size: 0.9rem; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));">
+              <i class="fas fa-external-link-alt me-2"></i>Visit Site
+            </a>
+          </div>
+          <div class="col-lg-8">
+            <h5 class="text-secondary mb-3">Audio Improv Party Game</h5>
+            <p class="mb-3">An exciting audio-based improv party game with 3 unique modes: Emotion Switch, Yes And, and Hot Mic. Play online with friends or offline in pass & play mode.</p>
+            <div class="row">
+              <div class="col-md-6">
+                <h6 class="text-warning">Game Modes</h6>
+                <ul class="text-light small">
+                  <li><strong>Emotion Switch</strong> - Switch emotions mid-scene</li>
+                  <li><strong>Yes And</strong> - Classic improv building</li>
+                  <li><strong>Hot Mic</strong> - Spontaneous audio challenges</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="text-warning">Target Audience</h6>
+                <ul class="text-light small">
+                  <li>Friend groups & party hosts (18-35)</li>
+                  <li>Corporate team building</li>
+                  <li>Streamers & content creators</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section class="section contact-section" id="contact">
     <div class="container">
+      <div class="story-marker">🤝 Ready to Collaborate</div>
       <h2 class="section-title animate-on-scroll">Let's Connect</h2>
+      <p class="story-intro animate-on-scroll">
+        The journey is ongoing. I'm looking for the next peak to climb, the next bridge to build, 
+        the next story to tell through code.
+      </p>
       <div class="row g-4">
         <div class="col-md-4 animate-on-scroll">
           <a href="mailto:saumyaprakash30@gmail.com" class="contact-link">
@@ -875,6 +1627,16 @@
           </a>
         </div>
       </div>
+      
+      <!-- Payment Button Section -->
+      <div class="row mt-5">
+        <div class="col-12 text-center animate-on-scroll">
+          <h4 class="mb-4">Support My Work</h4>
+          <form>
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Rhe8U4SOgpnKBO" async> </script> 
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -891,39 +1653,184 @@
   
   <!-- Custom JavaScript -->
   <script>
-    // Navbar scroll effect
+    // ========== REACT SPRING PARALLAX ENGINE ==========
+    
+    // Spring physics configuration (similar to React Spring)
+    const springConfig = {
+      tension: 170,     // Higher = snappier (React Spring default: 170)
+      friction: 26,     // Higher = less bouncy (React Spring default: 26)
+      mass: 1,
+      clamp: false
+    };
+
+    // Easing function approximating spring physics
+    function easeOutSpring(t, config = springConfig) {
+      const { tension, friction, mass } = config;
+      const velocity = 0;
+      const k = tension / mass;
+      const c = friction / mass;
+      const w = Math.sqrt(k - (c / 2) ** 2);
+      const exp = Math.exp(-c * t / 2);
+      const cos = Math.cos(w * t);
+      const sin = Math.sin(w * t);
+      return 1 - exp * (cos + (c / (2 * w)) * sin);
+    }
+
+    // Store for animated values
+    const animatedValues = {};
+
+    // Spring animation function
+    function animateSpring(element, from, to, duration = 800, property = 'transform') {
+      let startTime = null;
+      const id = `${element.id || Math.random()}-${property}`;
+      
+      function frame(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Apply spring easing
+        const springProgress = easeOutSpring(progress, springConfig);
+        const value = from + (to - from) * springProgress;
+        
+        animatedValues[id] = value;
+        element.style[property] = value;
+        
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        }
+      }
+      
+      requestAnimationFrame(frame);
+    }
+
+    // Advanced parallax with spring physics
+    const sections = document.querySelectorAll('.section');
+    let previousScrollY = 0;
+
     window.addEventListener('scroll', function() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollProgress = scrollY / (documentHeight - windowHeight);
+      
+      // Update scroll progress bar with spring
+      const progressBar = document.querySelector('.scroll-progress-line');
+      if (progressBar) {
+        const targetWidth = scrollProgress * 100;
+        const currentWidth = parseFloat(progressBar.style.width) || 0;
+        const diff = targetWidth - currentWidth;
+        progressBar.style.width = (currentWidth + diff * 0.3) + '%';
+      }
+
+      // Navbar scroll effect
       const navbar = document.getElementById('mainNav');
-      if (window.scrollY > 100) {
+      if (scrollY > 100) {
         navbar.classList.add('scrolled');
       } else {
         navbar.classList.remove('scrolled');
       }
+
+      // Spring parallax effect on sections (reduced to prevent overlap)
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionCenter = sectionTop + sectionHeight / 2;
+        const windowCenter = scrollY + windowHeight / 2;
+
+        // Calculate distance from center
+        const distanceFromCenter = windowCenter - sectionCenter;
+        const maxDistance = windowHeight;
+        const normalizedDistance = Math.max(-1, Math.min(1, distanceFromCenter / maxDistance));
+
+        // Reduced parallax to prevent overlap
+        const parallaxAmount = normalizedDistance * 20;
+
+        // Apply spring easing to parallax
+        const easeAmount = easeOutSpring(Math.abs(normalizedDistance));
+        const finalParallax = parallaxAmount * easeAmount;
+
+        section.style.transform = `translateY(${finalParallax}px)`;
+
+        section.style.opacity = Math.max(0.85, 1 - Math.abs(normalizedDistance) * 0.1);
+        
+        // Parallax layer animation
+        const layers = section.querySelectorAll('[data-parallax-layer]');
+        layers.forEach(layer => {
+          const speed = parseFloat(layer.getAttribute('data-parallax-layer'));
+          const offset = (scrollY * speed) % (windowHeight * 2);
+          layer.style.transform = `translateY(${offset}px)`;
+        });
+
+        // Story marker parallax
+        const marker = section.querySelector('.story-marker');
+        if (marker) {
+          const markerDistance = Math.abs(windowCenter - (sectionTop + 50));
+          const markerProximity = 1 - Math.min(1, markerDistance / windowHeight);
+          marker.style.opacity = 0.4 + markerProximity * 0.6;
+          marker.style.transform = `
+            translateY(${Math.sin(scrollY * 0.005) * 10}px)
+            scale(${0.8 + markerProximity * 0.2})
+          `;
+        }
+      });
+
+      previousScrollY = scrollY;
     });
 
-    // Smooth scrolling for anchor links
+    // Icon floating animation with spring
+    const icons = document.querySelectorAll('.education-icon, .skill-icon, .contact-icon');
+    icons.forEach(icon => {
+      let offset = 0;
+      setInterval(() => {
+        offset += 0.02;
+        const y = Math.sin(offset) * 15;
+        const x = Math.cos(offset) * 5;
+        icon.style.transform = `translateY(${y}px) translateX(${x}px)`;
+      }, 30);
+    });
+
+    // Smooth scrolling with spring easing
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          const targetPosition = target.offsetTop;
+          const startPosition = window.scrollY;
+          const distance = targetPosition - startPosition;
+          const duration = 1000;
+          let startTime = null;
+
+          function smoothScroll(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Spring easing for smooth scroll
+            const springProgress = easeOutSpring(progress, springConfig);
+            window.scrollTo(0, startPosition + distance * springProgress);
+            
+            if (progress < 1) {
+              requestAnimationFrame(smoothScroll);
+            }
+          }
+          
+          requestAnimationFrame(smoothScroll);
         }
       });
     });
 
-    // Scroll animations
+    // Enhanced scroll animations with spring
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      threshold: 0.15,
+      rootMargin: '-50px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
+          entry.target.style.setProperty('--index', index);
           entry.target.classList.add('animated');
         }
       });
@@ -933,7 +1840,59 @@
       observer.observe(el);
     });
 
-    // Typing effect for hero subtitle
+    // Spring hover effects on cards
+    document.querySelectorAll('.education-card, .skill-item, .photo-item, .contact-item, .work-card').forEach(card => {
+      let isHovering = false;
+      let targetScale = 1;
+      let currentScale = 1;
+
+      card.addEventListener('mouseenter', function() {
+        isHovering = true;
+        targetScale = 1.08;
+      });
+
+      card.addEventListener('mouseleave', function() {
+        isHovering = false;
+        targetScale = 1;
+      });
+
+      card.addEventListener('mousemove', function(e) {
+        if (!isHovering) return;
+        
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) * 0.12;
+        const rotateY = (centerX - x) * 0.12;
+        
+        this.style.transform = `
+          perspective(1200px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+          scale(${targetScale})
+        `;
+      });
+
+      // Animate back to normal with spring
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale(1)';
+      });
+
+      // Spring scale animation on hover
+      card.addEventListener('mouseenter', function() {
+        this.style.animation = 'springPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) infinite';
+      });
+
+      card.addEventListener('mouseleave', function() {
+        this.style.animation = 'none';
+      });
+    });
+
+    // Enhanced typing effect with spring
     const subtitle = document.querySelector('.hero-subtitle');
     if (subtitle) {
       const text = 'Software Engineer';
@@ -943,14 +1902,55 @@
         let i = 0;
         const typeWriter = () => {
           if (i < text.length) {
-            subtitle.innerHTML += text.charAt(i);
+            const char = document.createElement('span');
+            char.textContent = text.charAt(i);
+            char.style.display = 'inline-block';
+            char.style.animation = 'springBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+            char.style.animationDelay = `${i * 0.08}s`;
+            subtitle.appendChild(char);
             i++;
-            setTimeout(typeWriter, 100);
+            setTimeout(typeWriter, 120);
           }
         };
         typeWriter();
-      }, 1000);
+      }, 800);
     }
+
+    // Spring scroll indicators
+    const indicatorContainer = document.querySelector('.spring-indicator');
+    if (!indicatorContainer) {
+      const indicator = document.createElement('div');
+      indicator.className = 'spring-indicator';
+      sections.forEach((section, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'spring-dot';
+        dot.onclick = () => {
+          sections[index].scrollIntoView({ behavior: 'smooth' });
+        };
+        indicator.appendChild(dot);
+      });
+      document.body.appendChild(indicator);
+    }
+
+    // Update indicators on scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const dots = document.querySelectorAll('.spring-dot');
+      
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionCenter = sectionTop + sectionHeight / 2;
+        const windowCenter = scrollY + windowHeight / 2;
+        
+        if (Math.abs(windowCenter - sectionCenter) < windowHeight / 2) {
+          dots[index]?.classList.add('active');
+        } else {
+          dots[index]?.classList.remove('active');
+        }
+      });
+    });
   </script>
 </body>
 
